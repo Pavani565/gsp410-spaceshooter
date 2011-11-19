@@ -1,0 +1,74 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset2 Symbol;}}
+{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\sa200\sl276\slmult1\lang9\f0\fs22 Game Design Data:\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1 Number of game turns: 25 -35\par
+{\pntext\f1\'B7\tab}Initial energy: 3000\par
+{\pntext\f1\'B7\tab}Initial enemy energy: 200\par
+{\pntext\f1\'B7\tab}Maximum number of torpedoes: 10\par
+{\pntext\f1\'B7\tab}Shield energy starts at 0\par
+{\pntext\f1\'B7\tab}Warp speeds can't exceed 8.1\par
+{\pntext\f1\'B7\tab}randomly place friendly ship on the map.\par
+{\pntext\f1\'B7\tab}randomly place enemy ships on empty spot in each quadrant using the following probabilities:\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li1080\sl276\slmult1 2% chance quadrant will have 3 enemy ships\par
+{\pntext\f1\'B7\tab}5% chance quadrant will have 2 enemy ships\par
+{\pntext\f1\'B7\tab}20% chance quadrant will have 1 enemy ship\par
+{\pntext\f1\'B7\tab}otherwise, the quadrant contains no enemy ships\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1 randomly place space station in an empty spot in each quadrant using the following probabilities:\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li1080\sl276\slmult1 4% chance of 1 space station\par
+{\pntext\f1\'B7\tab}otherwise, the quadrant contains no space station\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1 If no space stations are generated, put a space station in the same quadrant as the friendly ship and increase the number of enemy ships by one--unless there are already 3 enemy ships in the quadrant. Then randomly replace the friendly ship.\par
+{\pntext\f1\'B7\tab}Commands are:\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li1080\sl276\slmult1 navigation (Sector movement--point at destination with mouse and left click. Quadrant movement--point and left click on mini-map.)\par
+{\pntext\f1\'B7\tab}long range scan (Button: click button to reveal enemy ships, stars, and space stations in adjacent quadrants)\par
+{\pntext\f1\'B7\tab}set energy weapon energy level. (Slider. Move slider to increase or decrease power.  Total energy indicator decreases appropriately.)\par
+{\pntext\f1\'B7\tab}fire energy weapons (Button: click button. All enemy ships in quadrant are attacked.)\par
+{\pntext\f1\'B7\tab}fire missle weapons (Button: click button and then point at target and left click)\par
+{\pntext\f1\'B7\tab}control shields (Slider: Move slider to increase or decrease power.  Slider also indicates shield power. Total energy indicator decreases appropriately. )\par
+{\pntext\f1\'B7\tab}damage control (Toggle: click to open or close damage control screen)\par
+{\pntext\f1\'B7\tab}computer reports (Toggle: click to open or close damage control screen)\par
+{\pntext\f1\'B7\tab}quit (Button: click to quit--with additional click required to confirm.)\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1 If movement path passes through a sector with a:\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li1080\sl276\slmult1 star--ship takes random damage--.3 probability of 10-100 damage.\par
+{\pntext\f1\'B7\tab}space station--no effect unless stopping in sector, then ship autodocks.\par
+{\pntext\f1\'B7\tab}enemy ship--both ships take random damage--.1 probability of (10 - 50) damage.\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1 if movement path of a missle passes through a sector with a:\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li1080\sl276\slmult1 star--.9 probability of being destroyed.\par
+{\pntext\f1\'B7\tab}space station--.1 probability of destroying space station instead of original target.\par
+{\pntext\f1\'B7\tab}enemy ship--.5 probability of attacking enemy ship instead of original target.\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1 Damage (.05 probability of critical hit for each of the following systems when energy hitting friendly ship is greater than 20% of shield energy.):\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li1080\sl276\slmult1 Long Range Scanners.  If damaged, long range scan doesn't work. 3 - 10 turns to repair.\par
+{\pntext\f1\'B7\tab}Energy Weapon. If damaged, energy weapon doesn't work. 1-10 turns to repair.\par
+{\pntext\f1\'B7\tab}Missle Weapon. If damaged, can't fire missle. 1-5 turns to repair.\par
+{\pntext\f1\'B7\tab}Shields.  If damaged, 50% of the shield energy is recovered for use elsewhere, but shield energy remains at 0 until repaired.  1-3 turns to repair.\par
+{\pntext\f1\'B7\tab}Warp Drive.  If damaged, max speed is  0.9. 4-10 turns to repair.\par
+{\pntext\f1\'B7\tab}All repair times are cut by 1/3 to 1/2 when docked at the space station, except for shields which are immediately restored.\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1 Movement costs ten units of energy plus one unit of energy per sector travelled .\par
+{\pntext\f1\'B7\tab}If not enough energy for movement, energy--if available--will be drained from the shields to complete the movement.\par
+{\pntext\f1\'B7\tab}Condition is "Green" unless:\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li1080\sl276\slmult1 Current energy is less that 10% of initial energy (300), then condition is "Yellow".\par
+{\pntext\f1\'B7\tab}The quadrant has one or more enemy ships, then condition is "Red".\par
+{\pntext\f1\'B7\tab}If conditions for both "Yellow" and "Red" alert exists, then condition is "Red".\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1 When docked at a space station:\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li1080\sl276\slmult1 Repairs are completed 2 to 3 times faster.\par
+{\pntext\f1\'B7\tab}Shields are immediately repaired, but set to zero (dropped to allow docking).\par
+{\pntext\f1\'B7\tab}Energy is immediately restored to initial value (3000).\par
+{\pntext\f1\'B7\tab}Missles are reloaded to maximum capacity (10).\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1 Missles cost two units of energy when fired.\par
+{\pntext\f1\'B7\tab}Energy weapon firing algorithm.\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li1080\sl276\slmult1 Divide the power set for the energy weapon by the number of enemy ships in the quadrant. This is the energy (e1) used against each enemy ship. \par
+{\pntext\f1\'B7\tab}Use the formula-- hit_energy =  e1 / (random(2 to 3) * (square_root(delta_row^2 + delta_column^2))  where delta_row and delta_column are the numbers of sector rows (or columns) between the enemy and friendly ship.\par
+{\pntext\f1\'B7\tab}if hit_energy is less than or equal to .15 * remaining enemy power, no damage is done.\par
+{\pntext\f1\'B7\tab}otherwise, enemy power = enemy power - hit_energy.\par
+{\pntext\f1\'B7\tab}If enemy power is less than or equal to zero, then the enemy is destroyed.\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1 Missle weapon firing algorithm.\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li1080\sl276\slmult1 Check for interfering stars or space stations and adjust as required.\par
+{\pntext\f1\'B7\tab}Probability of kill is D/D^2, where D is the distance between firing ship and the target. (We may need to modify this formula to improve the performance of the missles.)\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1 Enemy firing algorithm.\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li1080\sl276\slmult1 Use the same formula as energy weapon hit-- hit_energy =  e1 / (random(2 to 3) * (square_root(delta_row^2 + delta_column^2))  where delta_row and delta_column are the numbers of sector rows (or columns) between the enemy and friendly ship and e1 is the energy of the enemy ship.\par
+{\pntext\f1\'B7\tab}If hit_energy is greater than 20% of friendly ship's shields, calculate critical hit (see above).\par
+{\pntext\f1\'B7\tab}Friendly ship shields = shields - hit_energy.  If resulting friendly ship shields is less than or equal to zero, then friendly ship is destroyed and the game is over.\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1 Victory conditions:\par
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li1080\sl276\slmult1 All enemy ships destroyed before time runs out.  Victory for player.\par
+{\pntext\f1\'B7\tab}Enemy ships remain after time runs out. Loss for player.\par
+{\pntext\f1\'B7\tab}Friendly ship is destroyed. Loss for player.\par
+}
+ 
