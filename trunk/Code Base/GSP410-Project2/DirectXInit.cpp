@@ -18,8 +18,8 @@ CDirectXFramework::CDirectXFramework(void)
 	void(::D3DXMatrixIdentity(&m_MatView));
 	void(::D3DXMatrixIdentity(&m_MatProj));
 	m_pD3DSprite	=	NULL;
-	m_Texture		=	NULL;
-	void(::memset(&m_TexInfo, NULL, sizeof(m_TexInfo)));
+	m_FireButton		=	NULL;
+	void(::memset(&m_FireButtonInfo, NULL, sizeof(m_FireButtonInfo)));
 	m_pD3DFont		=	NULL;
 	m_pDIObject		=	NULL;
 	m_pDIKeyboard	=	NULL;
@@ -28,8 +28,8 @@ CDirectXFramework::CDirectXFramework(void)
 	void(::memset(&m_MouseState, NULL, sizeof(m_MouseState)));
 	void(::memset(&m_MousePosition, NULL, sizeof(m_MousePosition)));
 
-	Player.setX(SCREEN_WIDTH/2);
-	Player.setY(SCREEN_HEIGHT/2 + 100);
+	m_Player.setX(SCREEN_WIDTH/2);
+	m_Player.setY(SCREEN_HEIGHT/2 + 100);
 }
 
 void CDirectXFramework::InitDX(HWND& hWnd, HINSTANCE& hInst, bool bWindowed)
@@ -176,15 +176,24 @@ void CDirectXFramework::InitDX(HWND& hWnd, HINSTANCE& hInst, bool bWindowed)
 		::PostQuitMessage(0);
 		return;
 	}
-
+	m_Source.left = 0;
+	m_Source.top = 0;
+	m_Source.bottom = SCREEN_HEIGHT;
+	m_Source.right = SCREEN_WIDTH;
 	LoadTextures();
 }
 
 void CDirectXFramework::LoadTextures(void)
 {
-	// NONPOW2 may not work on certain computers //
+	// D3DX_DEFAULT_NONPOW2 may not work on certain computers //
 	// D3DFMT_UNKNOWN may cause changes in the image; D3DFMT_FROM_FILE can fix this, but may not work on some computers //
-	m_HResult = D3DXCreateTextureFromFileExW(m_pD3DDevice, L"ButtonFire.png", D3DX_DEFAULT_NONPOW2, D3DX_DEFAULT_NONPOW2, D3DX_FROM_FILE, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_FILTER_NONE, NULL, &m_TexInfo, NULL, &m_Texture);
+	m_HResult = D3DXCreateTextureFromFileExW(m_pD3DDevice, L"../../Documentation/PhotoShop Images/User Interface Images/PlayScreen-Blank.jpg", D3DX_DEFAULT_NONPOW2, D3DX_DEFAULT_NONPOW2, D3DX_FROM_FILE, 0, D3DFMT_FROM_FILE, D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_FILTER_NONE, NULL, &m_PanelingInfo, NULL, &m_Paneling);
+	if(m_HResult != S_OK)
+	{
+		::MessageBoxA(m_hWnd, "Failed to Create Texture From File", "D3DXCreateTextureFromFileExW() Failed", MB_OK | MB_ICONERROR);
+	}
+	
+	m_HResult = D3DXCreateTextureFromFileExW(m_pD3DDevice, L"../../Documentation/PhotoShop Images/Object Images/ButtonFire.png", D3DX_DEFAULT_NONPOW2, D3DX_DEFAULT_NONPOW2, D3DX_FROM_FILE, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_FILTER_NONE, NULL, &m_FireButtonInfo, NULL, &m_FireButton);
 	if(m_HResult != S_OK)
 	{
 		::MessageBoxA(m_hWnd, "Failed to Create Texture From File", "D3DXCreateTextureFromFileExW() Failed", MB_OK | MB_ICONERROR);

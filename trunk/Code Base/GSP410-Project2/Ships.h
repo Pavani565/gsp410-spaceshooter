@@ -16,7 +16,7 @@ public:
 	int getHealth(void);
 };
 
-class CPlayerShip : public CParentShip
+class Cm_PlayerShip : public CParentShip
 {
 private:
 	int m_ShipEnergy;		// Amount of Energy the ship has				//
