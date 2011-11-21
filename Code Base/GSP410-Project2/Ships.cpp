@@ -25,35 +25,35 @@ int CParentShip::getY(void)
 	return this->m_Y;
 }
 
-void CPlayerShip::setBlasterEnergy(int newBlasterEnergy)
+void Cm_PlayerShip::setBlasterEnergy(int newBlasterEnergy)
 {
 	this->m_BlasterEnergy = newBlasterEnergy;
 }
-void CPlayerShip::setMissilesToFire(int NumberOfMissiles)
+void Cm_PlayerShip::setMissilesToFire(int NumberOfMissiles)
 {
 	this->m_MissilesToFire = NumberOfMissiles;
 }
-void CPlayerShip::setShieldEnergy(int newShieldEnergy)
+void Cm_PlayerShip::setShieldEnergy(int newShieldEnergy)
 {
 	this->m_ShieldEnergy = newShieldEnergy;
 }
-void CPlayerShip::setShipEnergy(int newShipEnergy)
+void Cm_PlayerShip::setShipEnergy(int newShipEnergy)
 {
 	this->m_ShipEnergy = newShipEnergy;
 }
-int CPlayerShip::getBlasterEnergy(void)
+int Cm_PlayerShip::getBlasterEnergy(void)
 {
 	return this->m_BlasterEnergy;
 }
-int CPlayerShip::getMissilesToFire(void)
+int Cm_PlayerShip::getMissilesToFire(void)
 {
 	return this->m_MissilesToFire;
 }
-int CPlayerShip::getShieldEnergy(void)
+int Cm_PlayerShip::getShieldEnergy(void)
 {
 	return this->m_ShieldEnergy;
 }
-int CPlayerShip::getShipEnergy(void)
+int Cm_PlayerShip::getShipEnergy(void)
 {
 	return this->m_ShipEnergy;
 }

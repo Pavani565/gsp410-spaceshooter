@@ -17,11 +17,6 @@ void CDirectXFramework::Shutdown(void)
 		void(m_pD3DSprite->Release());
 		m_pD3DSprite = NULL;
 	}
-	if(m_Texture != NULL)
-	{
-		void(m_Texture->Release());
-		m_Texture = NULL;
-	}
 	if(m_pD3DFont != NULL)
 	{
 		void(m_pD3DFont->Release());
@@ -41,6 +36,16 @@ void CDirectXFramework::Shutdown(void)
 	{
 		void(m_pDIMouse->Release());
 		m_pDIMouse = NULL;
+	}
+	if(m_FireButton != NULL)
+	{
+		void(m_FireButton->Release());
+		m_FireButton = NULL;
+	}
+	if(m_Paneling != NULL)
+	{
+		void(m_Paneling->Release());
+		m_Paneling = NULL;
 	}
 }
 

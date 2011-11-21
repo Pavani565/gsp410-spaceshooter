@@ -29,9 +29,15 @@ void CDirectXFramework::Update(float DeltaTime)
 	{
 		// Get Mouse Position If Left Mouse Button Is Down //
 		::GetCursorPos(&m_MousePosition);
+		::ScreenToClient(m_hWnd, &m_MousePosition);
+		WINDOWINFO windinfo;
+		::GetWindowInfo(m_hWnd, &windinfo);
+		windinfo.cxWindowBorders;
+		windinfo.cyWindowBorders;
+		windinfo.rcWindow;
 		// Check If Mouse Is Over The Button //
-		if(unsigned(m_MousePosition.x) <= Player.getX() + m_TexInfo.Width/2 && unsigned(m_MousePosition.x) >= Player.getX() - m_TexInfo.Width/2)
-			if(unsigned(m_MousePosition.y) <= Player.getY() + m_TexInfo.Height/2 && unsigned(m_MousePosition.y) >= Player.getY() - m_TexInfo.Height/2)
+		if(unsigned(m_MousePosition.x) <= m_Player.getX() + m_FireButtonInfo.Width/2 && unsigned(m_MousePosition.x) >= m_Player.getX() - m_FireButtonInfo.Width/2)
+			if(unsigned(m_MousePosition.y) <= m_Player.getY() + m_FireButtonInfo.Height/2 && unsigned(m_MousePosition.y) >= m_Player.getY() - m_FireButtonInfo.Height/2)
 				::PostQuitMessage(0);
 	}
 }
