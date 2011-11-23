@@ -30,6 +30,8 @@ CDirectXFramework::CDirectXFramework(void)
 
 	m_Player.setX(SCREEN_WIDTH/2);
 	m_Player.setY(SCREEN_HEIGHT/2 + 100);
+	void(::memset(&m_Text, NULL, sizeof(m_Text)));
+	void(::memset(&m_Text2, NULL, sizeof(m_Text2)));
 }
 
 void CDirectXFramework::InitDX(HWND& hWnd, HINSTANCE& hInst, bool bWindowed)
@@ -148,7 +150,7 @@ void CDirectXFramework::InitDX(HWND& hWnd, HINSTANCE& hInst, bool bWindowed)
 		::MessageBoxA(m_hWnd, "Failed to Create Keyboard Device", "CreateDevice() Failed", MB_OK | MB_ICONERROR);
 	}
 	// Set up Keyboard //
-	m_pDIKeyboard->SetCooperativeLevel(hWnd, DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
+	m_pDIKeyboard->SetCooperativeLevel(m_hWnd, DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
 	if(m_HResult != S_OK)
 	{
 		::MessageBoxA(m_hWnd, "Failed to Set Keyboard Cooperative Level", "SetCooperativeLevel() Failed", MB_OK | MB_ICONERROR);
