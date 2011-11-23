@@ -2,7 +2,11 @@
 
 #include "Definitions.h"
 #include "DirectXIncludes.h"
-#include "Ships.h"
+#include "Unit.h"
+#include "FriendlyUnit.h"
+#include "EnemyUnit.h"
+
+#include<sstream>
 
 class CDirectXFramework
 {
@@ -41,14 +45,15 @@ private:
 	// Direct Input Variables													//
 	IDirectInput8*			m_pDIObject;		// DirectInput Object			//
 	IDirectInputDevice8*	m_pDIKeyboard;		// Keyboard Device				//
-	bool					m_bKeyDown[256];	// Used To Limit Keyboard Input	//
+	bool					m_bKeyDown[256];	// Used To Get Keyboard Input	//
 	IDirectInputDevice8*	m_pDIMouse;			// Mouse Device					//
 	DIMOUSESTATE2			m_MouseState;		// Mouse's State				//
 	POINT					m_MousePosition;	// Mouse's Position				//
 
 	// Game Variables						//
-	Cm_PlayerShip m_Player; // m_Player 1			//
+	CFriendlyUnit m_Player; // m_Player 1	//
 	TCHAR m_Text[32];	// Text to Display	//
+	TCHAR m_Text2[3];	// Text to Display	//
 
 public:
 	// Constructor And Destructor //

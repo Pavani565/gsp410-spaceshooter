@@ -78,14 +78,18 @@
     <ClCompile Include="DirectXRender.cpp" />
     <ClCompile Include="DirectXShutdown.cpp" />
     <ClCompile Include="DirectXUpdate.cpp" />
-    <ClCompile Include="Ships.cpp" />
+    <ClCompile Include="EnemyUnit.cpp" />
+    <ClCompile Include="FriendlyUnit.cpp" />
+    <ClCompile Include="Unit.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectXFramework.h" />
     <ClInclude Include="Definitions.h" />
     <ClInclude Include="DirectXIncludes.h" />
-    <ClInclude Include="Ships.h" />
+    <ClInclude Include="EnemyUnit.h" />
+    <ClInclude Include="FriendlyUnit.h" />
+    <ClInclude Include="Unit.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

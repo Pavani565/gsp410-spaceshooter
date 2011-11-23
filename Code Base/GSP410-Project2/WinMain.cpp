@@ -10,7 +10,7 @@ HINSTANCE			g_hInstance;	// Application Instance Handle	//
 bool				g_bWindowed;	// Fullscreen Boolean			//
 CDirectXFramework	g_DX;			// DirectXFramework Instance	//
 
-// FUNCTIONS// 
+// FUNCTIONS //
 
 int WINAPI wWinMain(HINSTANCE hInstance,	// Application Handle					//
 	HINSTANCE hPrevInstance,				// Previous Application Handle			//
@@ -86,7 +86,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLi
 	__int64 prevTimeStamp = 0;
 	QueryPerformanceCounter((LARGE_INTEGER*)&prevTimeStamp);
 
-	// Main Loop// 
+	// Main Loop //
 	while(msg.message != WM_QUIT)
 	{
 		if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
