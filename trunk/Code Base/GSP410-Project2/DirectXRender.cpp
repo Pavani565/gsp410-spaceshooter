@@ -1,6 +1,6 @@
-#include "DirectXFramework.h"
+#include "DirectX.h"
 
-void CDirectXFramework::Render()
+void CDirectX::Render()
 {
 	// Test if the Device was Created Successfully //
 	if(!m_pD3DDevice)
@@ -57,6 +57,7 @@ void CDirectXFramework::Render()
 				{
 					::MessageBoxA(m_hWnd, "Failed to Draw Text", "DrawTextW() Failed", MB_OK | MB_ICONERROR);
 				}
+				/*
 				if(m_pD3DFont->DrawText(0, m_Text, -1, &m_Source, DT_TOP| DT_CENTER | DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255)) == 0)
 				{
 					::MessageBoxA(m_hWnd, "Failed to Draw Text", "DrawTextW() Failed", MB_OK | MB_ICONERROR);
@@ -65,7 +66,7 @@ void CDirectXFramework::Render()
 				{
 					::MessageBoxA(m_hWnd, "Failed to Draw Text", "DrawTextW() Failed", MB_OK | MB_ICONERROR);
 				}
-
+				*/
 				m_HResult = m_pD3DDevice->EndScene();
 				if(m_HResult != S_OK)
 				{

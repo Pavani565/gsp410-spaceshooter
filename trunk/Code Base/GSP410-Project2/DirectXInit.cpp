@@ -1,8 +1,8 @@
 #include <Windows.h>
 
-#include "DirectXFramework.h"
+#include "DirectX.h"
 
-CDirectXFramework::CDirectXFramework(void)
+CDirectX::CDirectX(void)
 {
 	m_hWnd			=	NULL;
 	m_bVsync		=	NULL;
@@ -21,12 +21,6 @@ CDirectXFramework::CDirectXFramework(void)
 	m_FireButton		=	NULL;
 	void(::memset(&m_FireButtonInfo, NULL, sizeof(m_FireButtonInfo)));
 	m_pD3DFont		=	NULL;
-	m_pDIObject		=	NULL;
-	m_pDIKeyboard	=	NULL;
-	void(::memset(&m_bKeyDown, NULL, sizeof(m_bKeyDown)));
-	m_pDIMouse		=	NULL;
-	void(::memset(&m_MouseState, NULL, sizeof(m_MouseState)));
-	void(::memset(&m_MousePosition, NULL, sizeof(m_MousePosition)));
 
 	m_Player.setX(SCREEN_WIDTH/2);
 	m_Player.setY(SCREEN_HEIGHT/2 + 100);
@@ -34,7 +28,7 @@ CDirectXFramework::CDirectXFramework(void)
 	void(::memset(&m_Text2, NULL, sizeof(m_Text2)));
 }
 
-void CDirectXFramework::InitDX(HWND& hWnd, HINSTANCE& hInst, bool bWindowed)
+void CDirectX::InitDX(HWND& hWnd, HINSTANCE& hInst, bool bWindowed)
 {
 	// Copy Window Handle //
 	m_hWnd = hWnd;
@@ -117,50 +111,6 @@ void CDirectXFramework::InitDX(HWND& hWnd, HINSTANCE& hInst, bool bWindowed)
 		return;
 	}
 
-
-	// Create the Direct Input Object //
-	m_HResult = DirectInput8Create(hInst, DIRECTINPUT_VERSION, IID_IDirectInput8, (void**)&m_pDIObject, NULL);
-	if(m_HResult != S_OK)
-	{
-		::MessageBoxA(m_hWnd, "Failed to Create Input Device", "DirectInput8Create() Failed", MB_OK | MB_ICONERROR);
-	}
-	// Initialize Mouse //
-	m_HResult = m_pDIObject->CreateDevice(GUID_SysMouse, &m_pDIMouse, NULL);
-	if(m_HResult != S_OK)
-	{
-		::MessageBoxA(m_hWnd, "Failed to Create Mouse Device", "CreateDevice() Failed", MB_OK | MB_ICONERROR);
-	}
-	// Set up Mouse //
-	m_HResult = m_pDIMouse->SetCooperativeLevel(hWnd, DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
-	if(m_HResult != S_OK)
-	{
-		::MessageBoxA(m_hWnd, "Failed to Set Mouse Cooperative Level", "SetCooperativeLevel() Failed", MB_OK | MB_ICONERROR);
-	}
-	// 2 Button Mouse //
-	m_HResult = m_pDIMouse->SetDataFormat(&c_dfDIMouse2);
-	if(m_HResult != S_OK)
-	{
-		::MessageBoxA(m_hWnd, "Failed to Set Mouse Data Format", "SetDataFormat() Failed", MB_OK | MB_ICONERROR);
-	}
-
-	// Initialize Keyboard //
-	m_HResult = m_pDIObject->CreateDevice(GUID_SysKeyboard, &m_pDIKeyboard, NULL);
-	if(m_HResult != S_OK)
-	{
-		::MessageBoxA(m_hWnd, "Failed to Create Keyboard Device", "CreateDevice() Failed", MB_OK | MB_ICONERROR);
-	}
-	// Set up Keyboard //
-	m_pDIKeyboard->SetCooperativeLevel(m_hWnd, DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
-	if(m_HResult != S_OK)
-	{
-		::MessageBoxA(m_hWnd, "Failed to Set Keyboard Cooperative Level", "SetCooperativeLevel() Failed", MB_OK | MB_ICONERROR);
-	}
-	m_pDIKeyboard->SetDataFormat(&c_dfDIKeyboard);
-	if(m_HResult != S_OK)
-	{
-		::MessageBoxA(m_hWnd, "Failed to Set Keyboard Data Format", "SetDataFormat() Failed", MB_OK | MB_ICONERROR);
-	}
-
 	// Load D3DXFont //
 	m_HResult = D3DXCreateFont(m_pD3DDevice, 0, 0, 0, 0, false, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, TEXT("arial"), &m_pD3DFont);
 	// Check if the Font was Created //
@@ -185,17 +135,17 @@ void CDirectXFramework::InitDX(HWND& hWnd, HINSTANCE& hInst, bool bWindowed)
 	LoadTextures();
 }
 
-void CDirectXFramework::LoadTextures(void)
+void CDirectX::LoadTextures(void)
 {
 	// D3DX_DEFAULT_NONPOW2 may not work on certain computers //
 	// D3DFMT_UNKNOWN may cause changes in the image; D3DFMT_FROM_FILE can fix this, but may not work on some computers //
-	m_HResult = D3DXCreateTextureFromFileExW(m_pD3DDevice, L"../../Documentation/PhotoShop Images/User Interface Images/PlayScreen-Blank.jpg", D3DX_DEFAULT_NONPOW2, D3DX_DEFAULT_NONPOW2, D3DX_FROM_FILE, 0, D3DFMT_FROM_FILE, D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_FILTER_NONE, NULL, &m_PanelingInfo, NULL, &m_Paneling);
+	m_HResult = D3DXCreateTextureFromFileExW(m_pD3DDevice, L"../../Documentation/PhotoShop Images/User Interface Images/PlayScreen-Blank.jpg", D3DX_DEFAULT, D3DX_DEFAULT, D3DX_FROM_FILE, 0, D3DFMT_FROM_FILE, D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_FILTER_NONE, NULL, &m_PanelingInfo, NULL, &m_Paneling);
 	if(m_HResult != S_OK)
 	{
 		::MessageBoxA(m_hWnd, "Failed to Create Texture From File", "D3DXCreateTextureFromFileExW() Failed", MB_OK | MB_ICONERROR);
 	}
 	
-	m_HResult = D3DXCreateTextureFromFileExW(m_pD3DDevice, L"../../Documentation/PhotoShop Images/Object Images/ButtonFire.png", D3DX_DEFAULT_NONPOW2, D3DX_DEFAULT_NONPOW2, D3DX_FROM_FILE, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_FILTER_NONE, NULL, &m_FireButtonInfo, NULL, &m_FireButton);
+	m_HResult = D3DXCreateTextureFromFileExW(m_pD3DDevice, L"../../Documentation/PhotoShop Images/Object Images/ButtonFire.png", D3DX_DEFAULT, D3DX_DEFAULT, D3DX_FROM_FILE, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_FILTER_NONE, NULL, &m_FireButtonInfo, NULL, &m_FireButton);
 	if(m_HResult != S_OK)
 	{
 		::MessageBoxA(m_hWnd, "Failed to Create Texture From File", "D3DXCreateTextureFromFileExW() Failed", MB_OK | MB_ICONERROR);

@@ -1,7 +1,8 @@
 #pragma once
 #include "Unit.h"
+#include "Renderable.h"
 
-class CFriendlyUnit : public CUnit
+class CFriendlyUnit : public CUnit, public virtual CRenderable
 {
 private:
 	// Player Modifiable Variables											//
@@ -49,4 +50,13 @@ public:
 	int getMissileCondition(void);
 	int getSubLightCondition(void);
 	int getHyperDriveCondition(void);
+
+	// Derived Virtual Functions Defined //
+	IDirect3DTexture9* GetTexture(void);
+	RECT GetRect(void);
+	D3DXVECTOR3 GetCenter(void);
+	D3DCOLOR GetColor(void);
+	float GetScale(void);
+	float GetRotation(void);
+	D3DXVECTOR3 GetPosition(void);
 };
