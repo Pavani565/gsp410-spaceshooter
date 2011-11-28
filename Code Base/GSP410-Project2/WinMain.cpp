@@ -1,14 +1,17 @@
 #include <Windows.h>
 #include <WindowsX.h>
 #include "Definitions.h"
-#include "DirectXFramework.h"
+#include "DirectX.h"
+#include "DirectInput.h"
+#include "GameController.h"
 
-// GLOBAL VARIABLES //
-
-HWND				g_hWnd;			// Window Handle				//
-HINSTANCE			g_hInstance;	// Application Instance Handle	//
-bool				g_bWindowed;	// Fullscreen Boolean			//
-CDirectXFramework	g_DX;			// DirectXFramework Instance	//
+// GLOBAL VARIABLES												//
+HWND			g_hWnd;			// Window Handle				//
+HINSTANCE		g_hInstance;	// Application Instance Handle	//
+bool			g_bWindowed;	// Fullscreen Boolean			//
+CDirectX		g_DX;			// DirectX Instance				//
+CDirectInput*	g_DI;			// DirectInput Pointer			//
+GameController	g_GC;			// GameController				//
 
 // FUNCTIONS //
 
@@ -77,6 +80,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLi
 
 	// Initialize DirectX //
 	g_DX.InitDX(g_hWnd, g_hInstance, g_bWindowed);
+	g_DI = CDirectInput::GetInstance(g_hInstance, g_hWnd);
 
 	// Timer to find and pass in delta time //
 	__int64 cntsPerSec = 0;
@@ -101,13 +105,16 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLi
 		float dt = (currTimeStamp - prevTimeStamp) * secsPerCnt;
 
 		// DirectX Update and Render Calls //
-		g_DX.Update(dt);
+		g_DI->Update();
+		g_GC.UpdateGame(dt);
+		// g_DX.Update(dt); //
 		g_DX.Render();
 
 		prevTimeStamp = currTimeStamp;
 	}
 
 	// Shutdown DirectX //
+	g_DI->Shutdown();
 	g_DX.Shutdown();
 
 	// Unregister Window //

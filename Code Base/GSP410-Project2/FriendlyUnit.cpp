@@ -79,3 +79,37 @@ int CFriendlyUnit::getHyperDriveCondition(void)
 {
 	return this->m_HEngineCondition;
 }
+
+
+
+IDirect3DTexture9* CFriendlyUnit::GetTexture(void)
+{
+	return NULL;
+}
+RECT CFriendlyUnit::GetRect(void)
+{
+	RECT temp;
+	return temp;
+}
+D3DXVECTOR3 CFriendlyUnit::GetCenter(void)
+{
+	D3DXVECTOR3 temp;
+	return temp;
+}
+D3DCOLOR CFriendlyUnit::GetColor(void)
+{
+	return NULL;
+}
+float CFriendlyUnit::GetScale(void)
+{
+	return NULL;
+}
+float CFriendlyUnit::GetRotation(void)
+{
+	return NULL;
+}
+D3DXVECTOR3 CFriendlyUnit::GetPosition(void)
+{
+	D3DXVECTOR3 temp;
+	return temp;
+}

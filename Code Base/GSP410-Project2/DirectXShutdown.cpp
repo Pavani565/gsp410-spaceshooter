@@ -1,6 +1,6 @@
-#include "DirectXFramework.h"
+#include "DirectX.h"
 
-void CDirectXFramework::Shutdown(void)
+void CDirectX::Shutdown(void)
 {
 	if(m_pD3DObject != NULL)
 	{
@@ -22,21 +22,6 @@ void CDirectXFramework::Shutdown(void)
 		void(m_pD3DFont->Release());
 		m_pD3DFont = NULL;
 	}
-	if(m_pDIObject != NULL)
-	{
-		void(m_pDIObject->Release());
-		m_pDIObject = NULL;
-	}
-	if(m_pDIKeyboard != NULL)
-	{
-		void(m_pDIKeyboard->Release());
-		m_pDIKeyboard = NULL;
-	}
-	if(m_pDIMouse != NULL)
-	{
-		void(m_pDIMouse->Release());
-		m_pDIMouse = NULL;
-	}
 	if(m_FireButton != NULL)
 	{
 		void(m_FireButton->Release());
@@ -49,7 +34,7 @@ void CDirectXFramework::Shutdown(void)
 	}
 }
 
-CDirectXFramework::~CDirectXFramework(void)
+CDirectX::~CDirectX(void)
 {
 	// Destructor //
 	Shutdown();
