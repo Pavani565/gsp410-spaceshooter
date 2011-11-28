@@ -1,0 +1,17 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int value[4] = {1, 2, 3, 4};
+	(What is the purpose of the opening and closing brackets?)
+	{
+		value[0] = 1; (this will only be executed once, so only value[0] will be changed--except it was already 1, because that's what the line above did.  The other values will be unchanged._
+	}
+
+	for (int i = 0; i < 4; i++) (this for loop will print out 1 then, on separate lines, 2, 3, and 4.)
+	{
+		cout << value[i];
+		cout << endl;
+	}
+}

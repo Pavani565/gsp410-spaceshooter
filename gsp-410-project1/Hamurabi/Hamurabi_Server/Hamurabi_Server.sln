@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hamurabi_Server", "Hamurabi_Server\Hamurabi_Server.vcxproj", "{DE93D4BD-D12E-442B-8ED3-D95F52B52E16}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE93D4BD-D12E-442B-8ED3-D95F52B52E16}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DE93D4BD-D12E-442B-8ED3-D95F52B52E16}.Debug|Win32.Build.0 = Debug|Win32
+		{DE93D4BD-D12E-442B-8ED3-D95F52B52E16}.Release|Win32.ActiveCfg = Release|Win32
+		{DE93D4BD-D12E-442B-8ED3-D95F52B52E16}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
