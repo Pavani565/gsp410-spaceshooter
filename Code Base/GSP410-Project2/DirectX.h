@@ -37,11 +37,15 @@ private:
 
 	// Sprite Variables													//
 	ID3DXSprite*		m_pD3DSprite;		// Sprite Object Pointer	//
-	IDirect3DTexture9*	m_Paneling;			// Pointer To The Texture	//
-	D3DXIMAGE_INFO		m_PanelingInfo;		// Info Related To Texture	//
 
-	IDirect3DTexture9*	m_FireButton;		// Pointer To The Texture	//
-	D3DXIMAGE_INFO		m_FireButtonInfo;	// Info Related To Texture	//
+	IDirect3DTexture9*	m_TempTexture;
+	D3DXIMAGE_INFO		m_TempInfo;
+
+	IDirect3DTexture9*	m_Paneling;
+	D3DXIMAGE_INFO		m_PanelingInfo;
+
+	IDirect3DTexture9*	m_FireButton;
+	D3DXIMAGE_INFO		m_FireButtonInfo;
 
 	// Font Variables												//
 	ID3DXFont*			m_pD3DFont;		// Font Object Pointer		//

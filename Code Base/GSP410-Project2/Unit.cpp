@@ -4,7 +4,8 @@ CUnit::CUnit(void)
 {
 	m_X = 0;
 	m_Y = 0;
-	UnitTexture = 0;
+	m_UnitTexture = 0;
+	memset(&m_TextureInfo, 0, sizeof(m_TextureInfo));
 }
 
 void CUnit::setX(int newX)
@@ -17,7 +18,11 @@ void CUnit::setY(int newY)
 }
 void CUnit::setTexturePointer(IDirect3DTexture9* TextureAddress)
 {
-	this->UnitTexture = TextureAddress;
+	this->m_UnitTexture = TextureAddress;
+}
+void CUnit::setTextureInfo(D3DXIMAGE_INFO TextureInformation)
+{
+	this->m_TextureInfo = TextureInformation;
 }
 int CUnit::getX(void)
 {
@@ -29,12 +34,24 @@ int CUnit::getY(void)
 }
 IDirect3DTexture9* CUnit::getTexturePointer(void)
 {
-	return this->UnitTexture;
+	return this->m_UnitTexture;
+}
+D3DXIMAGE_INFO CUnit::getTextureInfo(void)
+{
+	return this->m_TextureInfo;
 }
 
+bool CUnit::Clicked(int MouseX, int MouseY)
+{
+	if(MouseX > signed((this->m_X-(this->m_TextureInfo.Width/2))) && MouseX > signed((this->m_X+(this->m_TextureInfo.Width/2))))
+		if(MouseY > signed((this->m_Y-(this->m_TextureInfo.Height/2))) && MouseY < signed((this->m_Y+(this->m_TextureInfo.Height/2))))
+			return true;
+	return false;
+}
 CUnit::~CUnit(void)
 {
 	m_X = 0;
 	m_Y = 0;
-	UnitTexture = 0;
+	m_UnitTexture = 0;
+	memset(&m_TextureInfo, 0, sizeof(m_TextureInfo));
 }
