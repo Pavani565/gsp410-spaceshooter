@@ -71,6 +71,7 @@
     <ClInclude Include="Global.h" />
     <ClInclude Include="HUD.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="QuadInfo.h" />
     <ClInclude Include="Quadrant.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Sector.h" />

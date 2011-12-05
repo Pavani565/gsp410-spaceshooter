@@ -76,6 +76,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="DirectInputInit.cpp" />
     <ClCompile Include="DirectInputShutdown.cpp" />
     <ClCompile Include="DirectInputUpdate.cpp" />
@@ -86,10 +87,13 @@
     <ClCompile Include="EnemyUnit.cpp" />
     <ClCompile Include="FriendlyUnit.cpp" />
     <ClCompile Include="GameController.cpp" />
+    <ClCompile Include="Sector.cpp" />
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="Clickable.h" />
     <ClInclude Include="DirectInput.h" />
     <ClInclude Include="DirectX.h" />
     <ClInclude Include="Definitions.h" />
@@ -98,6 +102,9 @@
     <ClInclude Include="FriendlyUnit.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="Renderable.h" />
+    <ClInclude Include="Quadrant.h" />
+    <ClInclude Include="Sector.h" />
+    <ClInclude Include="Structures.h" />
     <ClInclude Include="Unit.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
