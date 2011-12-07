@@ -6,14 +6,31 @@
 
 Sector::Sector()
 {
-	occupied		= false;
-	occupiedType	= EMPTY;
+	mOccupied		= false;
+	mQuadPos.row	= 0;
+	mQuadPos.col	= 0;
+	mOccupiedType	= -1;
+	mEnemyIndex		= -1;
+	mScale			= 0.0f;
 }
 
-Command Sector::Clicked(POINT mouse)
+void Sector::setContent(int aType)
 {
-	Command cmd;
+	mOccupiedType = aType;
+}
+void Sector::setContent(int aType, int aIndex)
+{
+	mOccupiedType = aType;
+	mEnemyIndex	  = aIndex;
+}
 
+void Sector::setOriginScale(float aScale) //occupied type that's in sector
+{
+	mScale = aScale;
+}
+
+bool Sector::Clicked(POINT mouse, Command &cmd)
+{
 	//check to see if mouse click is in sector
 	if(mouse.x <= x + width/2 &&
 	   mouse.x >= x - width/2)
@@ -21,12 +38,18 @@ Command Sector::Clicked(POINT mouse)
 		if(mouse.y <= y + height/2 &&
 		   mouse.y >= y - height/2)
 		{
-			cmd.commandType = 0;
-			return cmd;
+			//fill command with COMMAND_TYPE
+			
+			//fill x & y positions
+
+			return true;
 		}
 	}
-	return cmd;
+	//fill commandType with INVALID_COMMAND
+	//fill x and y with zeros
+	return false;
 }
+
 //void Sector::setOccupation(int aType)
 //{
 //	//set occupied bool to true

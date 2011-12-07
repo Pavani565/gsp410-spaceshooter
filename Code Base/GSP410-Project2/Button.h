@@ -12,7 +12,13 @@ class Button : public Clickable
 {
 private:
 
+
 public:
-	Command virtual Clicked(POINT);
+	Button();
+
+
+	bool virtual Clicked(POINT, Command &);
+	
+	
 	void setAction(int);
 };

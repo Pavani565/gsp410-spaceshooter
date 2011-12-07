@@ -19,7 +19,7 @@ private:
 	// an array of objects to draw;
 	CRenderable*	m_Drawables;
 
-	QuadInfo		m_Galaxy[GALAXY_SIZE][GALAXY_SIZE];
+	QuadData		m_Galaxy[GALAXY_SIZE][GALAXY_SIZE];
 
 	Button			m_Buttons[BUTTONS_AMOUNT];
 

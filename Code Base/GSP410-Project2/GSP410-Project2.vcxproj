@@ -87,6 +87,7 @@
     <ClCompile Include="EnemyUnit.cpp" />
     <ClCompile Include="FriendlyUnit.cpp" />
     <ClCompile Include="GameController.cpp" />
+    <ClCompile Include="Quadrant.cpp" />
     <ClCompile Include="Sector.cpp" />
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="WinMain.cpp" />

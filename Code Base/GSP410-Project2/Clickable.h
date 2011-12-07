@@ -13,7 +13,7 @@ class Clickable
 protected:
 	int x, y, width, height;
 public:
-	virtual Command Clicked(POINT) = 0;
+	virtual bool Clicked(POINT, Command &) = 0;
 
 	/**
 	* sets/gets

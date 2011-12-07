@@ -16,32 +16,36 @@
 //	needs attack function that calcs distances and whatnot
 //	
 
+const int quadSize = 8;
+
 class Quadrant
 {
 public:
-	CEnemyUnit		enemies[3];
-	CFriendlyUnit	friendly;
-	//Star			star;
-	CUnit			stars[3];
-	//SpaceStation	spaceStation[3];
-	Sector			quad[8][8];
-
-	int				enemyIndex;
-	int				starIndex;
+	CEnemyUnit		mEnemies[3];
+	CUnit			mStars[7];
+	CFriendlyUnit	mFriendly;
+	CUnit			mStation;
+	Sector			mQuad[quadSize][quadSize];
+	QuadData		mQuadData;
 
 private:
 	Quadrant();
 
-	//void initQuad();
-
 	////////////////////////////////////////////////////////////////////////////
 	//Class    : LoadQuad
-	//Parameter: QuadInfo struct that consists of three ints that make up
+	//Param1   : QuadData struct that consists of three ints that make up
 	//         : the number of enemies, stars, and stations each quandrant should have
-	//Return   : void
-	//Job      : fills private data of current quadrant based on QuadInfo.
+	//Job      : fills private data of current quadrant based on QuadData.
 	//         : makes list of renderables and deletes renderable if it gets destroyed
-	void LoadQuad(QuadInfo); 
+	//Return   : void
+	void LoadQuad(QuadData); 
 
-
+	////////////////////////////////////////////////////////////////////////////
+	//Class    : getEmptySector
+	//Param1   : void
+	//Job      : generates two random ints withing range of quadSize.
+	//		   : uses those ints as indeces for a specific sector in mQuad.
+	//		   : checks to see if that sector's mOccupiedType is EMPTY.
+	//Return   : address of empty sector.
+	Sector& getEmptySector();
 };
