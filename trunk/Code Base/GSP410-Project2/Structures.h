@@ -17,6 +17,7 @@ enum COMMAND_TYPE
 	SCAN_LR,
 	FIRE_BL,
 	GALAXY_MAP,
+	INVALID_COMMAND,
 };
 
 //struct that holds row and column position (for 2D arrays)
@@ -28,7 +29,7 @@ struct RowCol
 
 //Struct that holds how many ships, stars, and space stations 
 //each quad has.
-struct QuadInfo
+struct QuadData
 {
 	int		enemies;
 	int		stars;
