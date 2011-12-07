@@ -7,7 +7,7 @@ private:
 	// General Unit Variables			//
 	int m_X;	// X position on Screen //
 	int m_Y;	// Y position on Screen //
-	float 
+	//float 
 	IDirect3DTexture9*	m_UnitTexture;
 	D3DXIMAGE_INFO		m_TextureInfo;
 	

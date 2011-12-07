@@ -6,6 +6,9 @@
 #include "Renderable.h"
 #include "FriendlyUnit.h"
 #include "EnemyUnit.h"
+#include "Structures.h"
+#include "Button.h"
+#include <time.h>
 
 class GameController
 {
@@ -16,13 +19,24 @@ private:
 	// an array of objects to draw;
 	CRenderable*	m_Drawables;
 
-	
+	QuadInfo		m_Galaxy[GALAXY_SIZE][GALAXY_SIZE];
+
+	Button			m_Buttons[BUTTONS_AMOUNT];
 
 	CDirectInput*	UserInput;
 
+	int				m_GameTurns;
+
+	int				m_CurrentTurn;
+
 public:
+
+	GameController(void);
+	~GameController(void);
 
 	void UpdateGame(float DeltaTime);
 
 	void LoadTextures(void);
+
+
 };
