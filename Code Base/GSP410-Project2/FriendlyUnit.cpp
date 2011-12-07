@@ -6,6 +6,23 @@ const int CFriendlyUnit::m_MaxShieldEnergy	= MAX_FRIENDLY_SHIELD_ENERGY;
 const int CFriendlyUnit::m_MaxBlasterEnergy	= MAX_BLASTER_ENERGY;
 const int CFriendlyUnit::m_MaxMissiles		= MAX_NUMBER_MISSILES;	
 
+CFriendlyUnit::CFriendlyUnit(void)
+{
+	m_ShipEnergy = m_MaxShipEnergy;
+	m_ShieldEnergy = 0;
+	m_BlasterEnergy = 0;
+	m_NumberOfMissiles = 0;
+
+	m_ShieldCondition = 0;
+	m_BlasterCondition = 0;
+	m_MissileCondition = 0;
+	m_SEngineCondition = 0;
+	m_HEngineCondition = 0;
+}
+CFriendlyUnit::~CFriendlyUnit()
+{
+
+}
 void CFriendlyUnit::setBlasterEnergy(int newBlasterEnergy)
 {
 	this->m_BlasterEnergy = newBlasterEnergy;

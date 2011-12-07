@@ -10,6 +10,7 @@ private:
 	int m_ShieldEnergy;		// Amount of Energy allotted to the shields		//
 	int m_BlasterEnergy;	// Amount of Energy allotted to the blasters	//
 	int m_MissilesToFire;	// Number of Missiles to Shoot					//
+	int m_NumberOfMissiles;
 
 	// Game Modifiable Variables									//
 	int m_ShieldCondition;	// Condition of the Shield Generator	//
@@ -18,8 +19,14 @@ private:
 	int m_SEngineCondition; // Condition of the Sub-Light Engine	//
 	int m_HEngineCondition;	// Condition of the Hyper-Drive Engine	//
 	//roll the dice to figure out how many turns it will take in accordance with GDD
+	
 
 public:
+
+	// Constructor & Destructor
+	CFriendlyUnit(void);
+	~CFriendlyUnit(void);
+
 	// Game Constants																					//
 	static const int m_MaxShipEnergy;	// Maximum amount of Energy the ship can have					//
 	static const int m_MaxShieldEnergy;	// Maximum amount of Energy that can be allotted to the Shield	//
@@ -60,4 +67,9 @@ public:
 	float GetScale(void);
 	float GetRotation(void);
 	D3DXVECTOR3 GetPosition(void);
+
+
+	//temp will make private with gets and sets
+	int m_QuadCol;
+	int m_QuadRow;
 };
