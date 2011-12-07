@@ -24,10 +24,23 @@ void CEnemyUnit::setShipEnergry(int newShipEnergy)
 	if(newShipEnergy > m_MaxEnergy)
 		this->m_ShipEnergy = m_MaxEnergy;
 }
+void CEnemyUnit::setCombatStateOn(void)
+{
+	this->m_CombatState = true;
+}
+void CEnemyUnit::setCombatStateOff(void)
+{
+	this->m_CombatState = false;
+}
+
 
 int CEnemyUnit::getShipEnergy(void)
 {
 	return this->m_ShipEnergy;
+}
+bool CEnemyUnit::getCombatState(void)
+{
+	return this->m_CombatState;
 }
 
 CEnemyUnit::~CEnemyUnit(void)

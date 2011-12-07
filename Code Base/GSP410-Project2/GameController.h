@@ -13,6 +13,8 @@ private:
 	CFriendlyUnit	m_Player;	// m_Player 1	//
 	CEnemyUnit		m_Enemy[3];
 	CUnit			m_Background;
+	// an array of objects to draw;
+	CRenderable*	m_Drawables;
 
 	
 

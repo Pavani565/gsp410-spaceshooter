@@ -41,13 +41,13 @@ D3DXIMAGE_INFO CUnit::getTextureInfo(void)
 	return this->m_TextureInfo;
 }
 
-bool CUnit::Clicked(int MouseX, int MouseY)
-{
-	if(MouseX > signed((this->m_X-(this->m_TextureInfo.Width/2))) && MouseX > signed((this->m_X+(this->m_TextureInfo.Width/2))))
-		if(MouseY > signed((this->m_Y-(this->m_TextureInfo.Height/2))) && MouseY < signed((this->m_Y+(this->m_TextureInfo.Height/2))))
-			return true;
-	return false;
-}
+//bool CUnit::Clicked(int MouseX, int MouseY)
+//{
+//	if(MouseX > signed((this->m_X-(this->m_TextureInfo.Width/2))) && MouseX > signed((this->m_X+(this->m_TextureInfo.Width/2))))
+//		if(MouseY > signed((this->m_Y-(this->m_TextureInfo.Height/2))) && MouseY < signed((this->m_Y+(this->m_TextureInfo.Height/2))))
+//			return true;
+//	return false;
+//}
 CUnit::~CUnit(void)
 {
 	m_X = 0;
