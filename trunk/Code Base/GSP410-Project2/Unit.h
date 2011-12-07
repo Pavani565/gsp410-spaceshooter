@@ -7,6 +7,7 @@ private:
 	// General Unit Variables			//
 	int m_X;	// X position on Screen //
 	int m_Y;	// Y position on Screen //
+	float 
 	IDirect3DTexture9*	m_UnitTexture;
 	D3DXIMAGE_INFO		m_TextureInfo;
 	
@@ -23,7 +24,7 @@ public:
 	IDirect3DTexture9*	getTexturePointer(void);
 	D3DXIMAGE_INFO		getTextureInfo(void);
 
-	bool Clicked(int MouseX, int MouseY);
+	//bool Clicked(int MouseX, int MouseY);
 
 	// Constructor & Destructor //
 	CUnit(void);

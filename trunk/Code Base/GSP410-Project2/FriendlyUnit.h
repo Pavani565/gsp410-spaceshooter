@@ -17,6 +17,7 @@ private:
 	int m_MissileCondition;	// Condition of the Missile Launcher	//
 	int m_SEngineCondition; // Condition of the Sub-Light Engine	//
 	int m_HEngineCondition;	// Condition of the Hyper-Drive Engine	//
+	//roll the dice to figure out how many turns it will take in accordance with GDD
 
 public:
 	// Game Constants																					//

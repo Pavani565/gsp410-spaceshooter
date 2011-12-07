@@ -1,0 +1,30 @@
+switch(GameState)
+case: Menu
+	Check Input
+case: GameOver
+	Check Input
+	Show Results
+case: DisplayGalaxyMap
+	Check Input
+case: Play
+	Check Input (keyboard too)//QW, AS
+	switch(CheckCommand)
+	case EmptySector: Move Friendly (path check, starting sector, ending sector, access to the sectors)
+	case EnemySector: Shoot Enemy
+	case StarSector: Nothing (illegal warning)
+	case StationSector: Move Adjacently
+	
+	case AddShEnButton: add energy to shield
+	case AddBlEnButton: add energy to blasters
+	case SubShEnButton: subtract energy from shield
+	case SubBlEnButton: subtract energy from blasters
+	case SCAN_LRButton: initiate long range scan
+	case FIRE_BLButton: fire the blasters
+	case GlxyMapButton: display galaxy map
+
+	Update Enemies
+	if(combatState==true)
+		move randomly
+		shoot at friendly
+	Update Repairs
+	Call Friendly Repair F(x)

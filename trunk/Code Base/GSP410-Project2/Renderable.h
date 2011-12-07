@@ -3,6 +3,14 @@
 #include <d3d9.h>
 #include <d3dx9.h>
 
+// pass a pointer of type Renderable to DXFrame to render our objects
+// also pass the number of objects to be rendered
+// in render, loop through all the objects drawing them to the screen
+
+// in LoadQuad we need to build the array of renderables and we need
+// to set the number of objects too. when one gets destroyed, we 
+// change the number and the array.
+
 class CRenderable
 {
 public:
