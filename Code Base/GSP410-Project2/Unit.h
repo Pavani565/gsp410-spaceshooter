@@ -1,30 +1,52 @@
 #pragma once 
 #include <d3dx9.h>
-
-class CUnit
+#include "Structures.h"
+#include "Renderable.h"
+class CUnit : public virtual CRenderable
 {
 private:
 	// General Unit Variables			//
-	int m_X;	// X position on Screen //
-	int m_Y;	// Y position on Screen //
-	//float 
+	RECT m_Rect;
+	D3DXVECTOR3 m_Coordinates;
+	D3DXVECTOR3 m_Center;
+	D3DCOLOR m_Color;
+	float m_Scale;
+	float m_Angle;
+	RowCol m_MySector;
 	IDirect3DTexture9*	m_UnitTexture;
 	D3DXIMAGE_INFO		m_TextureInfo;
 	
 public:
 	// General Unit Set Functions //
-	void setX(int newX);
-	void setY(int newY);
+	void setX(float newX);
+	void setY(float newY);
+	void setSector(int row, int col);
+	void setSector(RowCol);
+	void setScale(float scale);
+	void setAngle(float angle);
 	void setTexturePointer(IDirect3DTexture9* TextureAddress);
 	void setTextureInfo(D3DXIMAGE_INFO TextureInformation);
 
+	void resetRect(void);
+
 	// General Unit Get Functions //
-	int getX(void);
-	int getY(void);
+	float getX(void);
+	float getY(void);
+	int getRow(void);
+	int getCol(void);
+	RowCol getSector(void);
+
 	IDirect3DTexture9*	getTexturePointer(void);
 	D3DXIMAGE_INFO		getTextureInfo(void);
 
-	//bool Clicked(int MouseX, int MouseY);
+	// Derived Virtual Functions Defined //
+	IDirect3DTexture9* GetTexture(void);
+	RECT GetRect(void);
+	D3DXVECTOR3 GetCenter(void);
+	D3DCOLOR GetColor(void);
+	float GetScale(void);
+	float GetRotation(void);
+	D3DXVECTOR3 GetPosition(void);
 
 	// Constructor & Destructor //
 	CUnit(void);

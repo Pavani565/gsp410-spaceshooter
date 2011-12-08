@@ -79,8 +79,7 @@ GameController::GameController()
 	int tempCol= (rand() %GALAXY_SIZE);
 
 	//temp way now
-	m_Player.m_QuadCol = tempCol;
-	m_Player.m_QuadRow = tempRow;
+	m_Player.setSector(tempRow, tempCol);
 
 }
 
