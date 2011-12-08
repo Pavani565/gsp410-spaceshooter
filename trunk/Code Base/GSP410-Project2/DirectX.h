@@ -2,6 +2,7 @@
 
 #include "Definitions.h"
 #include "DirectXIncludes.h"
+#include "Renderable.h"
 #include "Unit.h"
 #include "FriendlyUnit.h"
 #include "EnemyUnit.h"
@@ -47,6 +48,21 @@ private:
 	IDirect3DTexture9*	m_FireButton;
 	D3DXIMAGE_INFO		m_FireButtonInfo;
 
+	IDirect3DTexture9*	m_FriendlyShip;
+	D3DXIMAGE_INFO		m_FriendlyShipInfo;
+
+	IDirect3DTexture9*	m_EnemyShip;
+	D3DXIMAGE_INFO		m_EnemyShipInfo;
+
+	IDirect3DTexture9*	m_Station;
+	D3DXIMAGE_INFO		m_StationInfo;
+
+	IDirect3DTexture9*	m_Star;
+	D3DXIMAGE_INFO		m_StarInfo;
+
+	IDirect3DTexture9*	m_Error;
+	D3DXIMAGE_INFO		m_ErrorInfo;
+
 	// Font Variables												//
 	ID3DXFont*			m_pD3DFont;		// Font Object Pointer		//
 
@@ -67,7 +83,7 @@ public:
 	void Update(float DeltaTime);
 
 	// Render //
-	void Render(void);
+	void Render(CRenderable*[], int);
 
 	// Shutdown //
 	void Shutdown(void);

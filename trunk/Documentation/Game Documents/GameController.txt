@@ -1,0 +1,25 @@
+GameController
+private:
+	static GameController
+	GameController();
+
+	cUnits
+	cFriendlyShip
+	cQuadrant
+	cStars
+	cSpaceStation
+	cButtons
+	cEnemyShip
+
+public:
+	static GameController* GetInstace() {return GameControler;}
+
+	int getSizeOfRenderables();
+
+	Renderable* [] getRenderables();
+
+	~GameController();
+
+	void Init();
+	void Shutdown();
+	void Update();
