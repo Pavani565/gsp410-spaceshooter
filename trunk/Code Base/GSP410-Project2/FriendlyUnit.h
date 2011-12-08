@@ -2,15 +2,14 @@
 #include "Unit.h"
 #include "Renderable.h"
 
-class CFriendlyUnit : public CUnit, public virtual CRenderable
+class CFriendlyUnit : public CUnit
 {
 private:
 	// Player Modifiable Variables											//
 	int m_ShipEnergy;		// Amount of Energy the ship has				//
 	int m_ShieldEnergy;		// Amount of Energy allotted to the shields		//
 	int m_BlasterEnergy;	// Amount of Energy allotted to the blasters	//
-	int m_MissilesToFire;	// Number of Missiles to Shoot					//
-	int m_NumberOfMissiles;
+	int m_NumberOfMissiles; // Amount of Missiles the ship has				//
 
 	// Game Modifiable Variables									//
 	int m_ShieldCondition;	// Condition of the Shield Generator	//
@@ -37,7 +36,17 @@ public:
 	void setShipEnergy(int newShipEnergy);
 	void setShieldEnergy(int newShieldEnergy);
 	void setBlasterEnergy(int newBlasterEnergy);
-	void setMissilesToFire(int newNumberOfMissiles);
+	void setMissiles(int newNumberOfMissiles);
+
+	void IncrementShieldEnergy1(void);	// Shield	//
+	void IncrementShieldEnergy10(void);
+	void DecrementShieldEnergy1(void);
+	void DecrementShieldEnergy10(void);
+	void IncrementBlasterEnergy1(void);	// Blaster	//
+	void IncrementBlasterEnergy10(void);
+	void DecrementBlasterEnergy1(void);
+	void DecrementBlasterEnergy10(void);
+	void DecrementMissileCount(void);	// Missile	//
 
 	// Set Functions For Game Modifiable Variables //
 	void setShieldCondition(int newShieldCondition);
@@ -50,7 +59,7 @@ public:
 	int getShipEnergy(void);
 	int getShieldEnergy(void);
 	int getBlasterEnergy(void);
-	int getMissilesToFire(void);
+	int getMissiles(void);
 
 	// Get Functions For Game Modifiable Variables //
 	int getShieldCondition(void);
@@ -58,18 +67,4 @@ public:
 	int getMissileCondition(void);
 	int getSubLightCondition(void);
 	int getHyperDriveCondition(void);
-
-	// Derived Virtual Functions Defined //
-	IDirect3DTexture9* GetTexture(void);
-	RECT GetRect(void);
-	D3DXVECTOR3 GetCenter(void);
-	D3DCOLOR GetColor(void);
-	float GetScale(void);
-	float GetRotation(void);
-	D3DXVECTOR3 GetPosition(void);
-
-
-	//temp will make private with gets and sets
-	int m_QuadCol;
-	int m_QuadRow;
 };

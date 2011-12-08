@@ -2,56 +2,130 @@
 
 CUnit::CUnit(void)
 {
-	m_X = 0;
-	m_Y = 0;
+	m_Scale = 1.0f;
+	m_Angle = 0.0f;
 	m_UnitTexture = 0;
 	memset(&m_TextureInfo, 0, sizeof(m_TextureInfo));
 }
 
-void CUnit::setX(int newX)
+void CUnit::setX(float newX)
 {
-	this->m_X = newX;
+	m_Coordinates.x = newX;
 }
-void CUnit::setY(int newY)
+void CUnit::setY(float newY)
 {
-	this->m_Y = newY;
+	m_Coordinates.y = newY;
+}
+void CUnit::setSector(int row, int col)
+{
+	m_MySector.row = row;
+	m_MySector.col = col;
+}
+void CUnit::setSector(RowCol sector)
+{
+	m_MySector = sector;
 }
 void CUnit::setTexturePointer(IDirect3DTexture9* TextureAddress)
 {
-	this->m_UnitTexture = TextureAddress;
+	m_UnitTexture = TextureAddress;
 }
 void CUnit::setTextureInfo(D3DXIMAGE_INFO TextureInformation)
 {
-	this->m_TextureInfo = TextureInformation;
+	m_TextureInfo = TextureInformation;
+	m_Rect.bottom = m_TextureInfo.Height * m_Scale;
+	m_Rect.right = m_TextureInfo.Width * m_Scale;
+	m_Rect.left = 0;
+	m_Rect.top = 0;
+	m_Center.x = m_Rect.right/2.0f;
+	m_Center.y = m_Rect.bottom/2.0f;
+	m_Center.z = 0;
 }
-int CUnit::getX(void)
+void CUnit::setScale(float scale)
 {
-	return this->m_X;
+	m_Scale = scale;
 }
-int CUnit::getY(void)
+void CUnit::setAngle(float angle)
 {
-	return this->m_Y;
+	m_Angle = angle;
 }
+void CUnit::resetRect(void)
+{
+	m_Rect.bottom = long(m_TextureInfo.Height * m_Scale);
+	m_Rect.right = long(m_TextureInfo.Width * m_Scale);
+	m_Rect.left = 0;
+	m_Rect.top = 0;
+}
+float CUnit::getX(void)
+{
+	return m_Coordinates.x;
+}
+float CUnit::getY(void)
+{
+	return m_Coordinates.y;
+}
+int CUnit::getCol(void)
+{
+	return m_MySector.col;
+}
+int CUnit::getRow(void)
+{
+	return m_MySector.row;
+}
+RowCol CUnit::getSector(void)
+{
+	return m_MySector;
+}
+
 IDirect3DTexture9* CUnit::getTexturePointer(void)
 {
-	return this->m_UnitTexture;
+	return m_UnitTexture;
 }
 D3DXIMAGE_INFO CUnit::getTextureInfo(void)
 {
-	return this->m_TextureInfo;
+	return m_TextureInfo;
 }
 
 //bool CUnit::Clicked(int MouseX, int MouseY)
 //{
-//	if(MouseX > signed((this->m_X-(this->m_TextureInfo.Width/2))) && MouseX > signed((this->m_X+(this->m_TextureInfo.Width/2))))
-//		if(MouseY > signed((this->m_Y-(this->m_TextureInfo.Height/2))) && MouseY < signed((this->m_Y+(this->m_TextureInfo.Height/2))))
+//	if(MouseX > signed((m_X-(m_TextureInfo.Width/2))) && MouseX > signed((m_X+(m_TextureInfo.Width/2))))
+//		if(MouseY > signed((m_Y-(m_TextureInfo.Height/2))) && MouseY < signed((m_Y+(m_TextureInfo.Height/2))))
 //			return true;
 //	return false;
 //}
+
+IDirect3DTexture9* CUnit::GetTexture(void)
+{
+	return m_UnitTexture;
+}
+RECT CUnit::GetRect(void)
+{
+	return m_Rect;
+}
+D3DXVECTOR3 CUnit::GetCenter(void)
+{
+	return m_Center;
+}
+D3DCOLOR CUnit::GetColor(void)
+{
+	return m_Color;
+}
+float CUnit::GetScale(void)
+{
+	return m_Scale;
+}
+float CUnit::GetRotation(void)
+{
+	return m_Angle;
+}
+D3DXVECTOR3 CUnit::GetPosition(void)
+{
+	return m_Coordinates;
+}
+
+
+
 CUnit::~CUnit(void)
 {
-	m_X = 0;
-	m_Y = 0;
 	m_UnitTexture = 0;
 	memset(&m_TextureInfo, 0, sizeof(m_TextureInfo));
 }
