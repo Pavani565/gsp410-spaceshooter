@@ -34,9 +34,13 @@ private:
 
 	GAMESTATE		m_Control_State;
 
-	Quadrant		m_Quad;
+	Quadrant		m_ActiveQuad;
 
 	Command			m_Command;
+
+	Clickable*		mClickable[CLICKABLES_SIZE];
+
+
 
 public:
 
@@ -53,7 +57,5 @@ public:
 
 	void UpdateEnemies();
 
-	void Ex_Command(int commandType);
-
-
+	void Scan();
 };
