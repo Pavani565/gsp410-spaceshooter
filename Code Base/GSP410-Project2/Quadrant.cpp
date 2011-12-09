@@ -42,6 +42,11 @@ Sector& Quadrant::getSector(int aIndex)
 				return mQuad[r][c];
 		}
 	}
+	//had to return something for all return control paths.
+	//i return the address of the first sector which should
+	//mess everything up which is what i want to happen.
+	//NOTE: IT SHOULD NEVER MESS UP but if it does, oh well.
+	return mQuad[0][0];
 }
 
 Sector& Quadrant::getEmptySector()
@@ -50,6 +55,7 @@ Sector& Quadrant::getEmptySector()
 	int randRow, randCol;
 	srand(timeGetTime());
 	randRow = rand() % quadSize+1;
+	srand(timeGetTime());
 	randCol = rand() % quadSize+1;
 
 	//: uses those ints as indeces for a specific sector in mQuad.
