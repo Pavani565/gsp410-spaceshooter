@@ -16,13 +16,10 @@
 class GameController
 {
 private:
-	CFriendlyUnit	m_Player;	// m_Player 1	//
-	CEnemyUnit		m_Enemy[3];
-	CUnit			m_Background;
 	// an array of objects to draw;
-	CRenderable*	m_Drawables;
 
 	QuadData		m_Galaxy[GALAXY_SIZE][GALAXY_SIZE];
+	int				QuadRow, QuadCol; // our current quad
 
 	//clickable
 	Button			m_Buttons[BUTTONS_AMOUNT];
@@ -57,6 +54,9 @@ public:
 	void ShowResults();
 
 	void UpdateEnemies();
+
+	CRenderable** GetRenderList(void);
+	int			 GetRenderListNumber(void);
 
 	void Scan();
 };

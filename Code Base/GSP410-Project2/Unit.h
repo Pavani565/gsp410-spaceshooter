@@ -4,7 +4,7 @@
 #include "Renderable.h"
 class CUnit : public virtual CRenderable
 {
-private:
+protected:
 	// General Unit Variables			//
 	RECT m_Rect;
 	D3DXVECTOR3 m_Coordinates;
@@ -13,7 +13,8 @@ private:
 	float m_Scale;
 	float m_Angle;
 	RowCol m_MySector;
-	IDirect3DTexture9*	m_UnitTexture;
+	//IDirect3DTexture9*	m_UnitTexture;
+	int m_TextureType;
 	D3DXIMAGE_INFO		m_TextureInfo;
 	
 public:
@@ -24,7 +25,8 @@ public:
 	void setSector(RowCol);
 	void setScale(float scale);
 	void setAngle(float angle);
-	void setTexturePointer(IDirect3DTexture9* TextureAddress);
+	//void setTexturePointer(IDirect3DTexture9* TextureAddress);
+	void setTextureType(int TextureType);
 	void setTextureInfo(D3DXIMAGE_INFO TextureInformation);
 
 	void resetRect(void);
@@ -36,11 +38,11 @@ public:
 	int getCol(void);
 	RowCol getSector(void);
 
-	IDirect3DTexture9*	getTexturePointer(void);
+	//IDirect3DTexture9*	getTexturePointer(void);
 	D3DXIMAGE_INFO		getTextureInfo(void);
 
 	// Derived Virtual Functions Defined //
-	IDirect3DTexture9* GetTexture(void);
+	int GetTextureType(void);
 	RECT GetRect(void);
 	D3DXVECTOR3 GetCenter(void);
 	D3DCOLOR GetColor(void);

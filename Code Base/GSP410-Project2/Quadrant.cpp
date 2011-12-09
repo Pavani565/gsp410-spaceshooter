@@ -28,7 +28,26 @@ void Quadrant::LoadQuad(QuadData aQuad)
 	mQuadData = aQuad;
 
 	//set all stuff
-
+	m_NumberOfDrawables = mQuadData.enemies;
+	for(int i = 0; i < m_NumberOfDrawables; i++)
+	{
+		m_Drawables[i] = &mEnemies[i];
+	}
+	int Count = m_NumberOfDrawables;
+	m_NumberOfDrawables += mQuadData.stars;
+	for(int i = 0; i < mQuadData.stars; i++, Count++)
+	{
+		m_Drawables[Count] = &mStars[i];
+	}
+	Count = m_NumberOfDrawables;
+	m_NumberOfDrawables += mQuadData.spaceStations;
+	for(int i = 0; i < mQuadData.spaceStations; i++, Count++)
+	{
+		m_Drawables[Count] = &mStation;
+	}
+	Count = m_NumberOfDrawables;
+	m_NumberOfDrawables += 1; // for friendly ship
+	m_Drawables[Count] = &mFriendly;
 
 }
 

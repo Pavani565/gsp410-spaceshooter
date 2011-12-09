@@ -4,7 +4,6 @@ CUnit::CUnit(void)
 {
 	m_Scale = 1.0f;
 	m_Angle = 0.0f;
-	m_UnitTexture = 0;
 	memset(&m_TextureInfo, 0, sizeof(m_TextureInfo));
 }
 
@@ -25,9 +24,14 @@ void CUnit::setSector(RowCol sector)
 {
 	m_MySector = sector;
 }
-void CUnit::setTexturePointer(IDirect3DTexture9* TextureAddress)
+//void CUnit::setTexturePointer(IDirect3DTexture9* TextureAddress)
+//{
+//	m_UnitTexture = TextureAddress;
+//}
+
+void CUnit::setTextureType(int TextureType)
 {
-	m_UnitTexture = TextureAddress;
+	m_TextureType = TextureType;
 }
 void CUnit::setTextureInfo(D3DXIMAGE_INFO TextureInformation)
 {
@@ -76,10 +80,10 @@ RowCol CUnit::getSector(void)
 	return m_MySector;
 }
 
-IDirect3DTexture9* CUnit::getTexturePointer(void)
-{
-	return m_UnitTexture;
-}
+//IDirect3DTexture9* CUnit::getTexturePointer(void)
+//{
+//	return m_UnitTexture;
+//}
 D3DXIMAGE_INFO CUnit::getTextureInfo(void)
 {
 	return m_TextureInfo;
@@ -93,9 +97,9 @@ D3DXIMAGE_INFO CUnit::getTextureInfo(void)
 //	return false;
 //}
 
-IDirect3DTexture9* CUnit::GetTexture(void)
+int CUnit::GetTextureType(void)
 {
-	return m_UnitTexture;
+	return m_TextureType;
 }
 RECT CUnit::GetRect(void)
 {
@@ -126,6 +130,5 @@ D3DXVECTOR3 CUnit::GetPosition(void)
 
 CUnit::~CUnit(void)
 {
-	m_UnitTexture = 0;
 	memset(&m_TextureInfo, 0, sizeof(m_TextureInfo));
 }

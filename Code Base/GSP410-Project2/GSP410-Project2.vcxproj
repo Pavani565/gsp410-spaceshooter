@@ -89,6 +89,8 @@
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="Quadrant.cpp" />
     <ClCompile Include="Sector.cpp" />
+    <ClCompile Include="Star.cpp" />
+    <ClCompile Include="Station.cpp" />
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
@@ -105,6 +107,8 @@
     <ClInclude Include="Renderable.h" />
     <ClInclude Include="Quadrant.h" />
     <ClInclude Include="Sector.h" />
+    <ClInclude Include="Star.h" />
+    <ClInclude Include="Station.h" />
     <ClInclude Include="Structures.h" />
     <ClInclude Include="Unit.h" />
   </ItemGroup>

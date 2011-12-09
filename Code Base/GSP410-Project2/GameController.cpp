@@ -75,11 +75,9 @@ GameController::GameController()
 	}
 
 	//set player pos
-	int tempRow = (rand() %GALAXY_SIZE);
-	int tempCol= (rand() %GALAXY_SIZE);
-
-	//temp way now
-	m_Player.setSector(tempRow, tempCol);
+	QuadRow = (rand() %GALAXY_SIZE);
+	QuadCol = (rand() %GALAXY_SIZE);
+	m_ActiveQuad.LoadQuad(m_Galaxy[QuadRow][QuadCol]);
 
 	//fills clickable array with address of buttons and sectors
 
@@ -206,6 +204,7 @@ void GameController::CheckInput()
 						m_Control_State = DISPLAYGMAP;
 						break;
 					default:
+						break;
 						//if not any invalid
 						break;
 					}
@@ -276,4 +275,14 @@ void GameController::Scan()
 			}
 		}
 	}
+}
+
+CRenderable** GameController::GetRenderList(void)
+{
+	return m_ActiveQuad.m_Drawables;
+}
+
+int GameController::GetRenderListNumber(void)
+{
+	return m_ActiveQuad.m_NumberOfDrawables;
 }

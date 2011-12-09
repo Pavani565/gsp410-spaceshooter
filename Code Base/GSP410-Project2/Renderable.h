@@ -2,6 +2,7 @@
 
 #include <d3d9.h>
 #include <d3dx9.h>
+#include "Definitions.h"
 
 // pass a pointer of type Renderable to DXFrame to render our objects
 // also pass the number of objects to be rendered
@@ -15,7 +16,7 @@ class CRenderable
 {
 public:
 	// Sprite Information //
-	virtual IDirect3DTexture9* GetTexture(void) = 0;
+	virtual int GetTextureType(void) = 0;
 	virtual RECT GetRect(void) = 0;
 	virtual D3DXVECTOR3 GetCenter(void) = 0;
 	virtual D3DCOLOR GetColor(void) = 0;

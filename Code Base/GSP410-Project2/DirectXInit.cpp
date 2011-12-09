@@ -18,12 +18,8 @@ CDirectX::CDirectX(void)
 	void(::D3DXMatrixIdentity(&m_MatView));
 	void(::D3DXMatrixIdentity(&m_MatProj));
 	m_pD3DSprite	=	NULL;
-	m_FireButton		=	NULL;
-	void(::memset(&m_FireButtonInfo, NULL, sizeof(m_FireButtonInfo)));
 	m_pD3DFont		=	NULL;
 
-	m_Player.setX(SCREEN_WIDTH/2);
-	m_Player.setY(SCREEN_HEIGHT/2 + 100);
 	void(::memset(&m_Text, NULL, sizeof(m_Text)));
 	void(::memset(&m_Text2, NULL, sizeof(m_Text2)));
 }
@@ -141,51 +137,44 @@ void CDirectX::LoadTextures(void)
 	// D3DFMT_UNKNOWN may cause changes in the image; D3DFMT_FROM_FILE can fix this, but may not work on some computers //
 
 	// Paneling //
-	m_HResult = D3DXCreateTextureFromFileExW(m_pD3DDevice, L"../../Documentation/PhotoShop Images/User Interface Images/PlayScreen-Blank.jpg", D3DX_DEFAULT, D3DX_DEFAULT, D3DX_FROM_FILE, 0, D3DFMT_FROM_FILE, D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_FILTER_NONE, NULL, &m_PanelingInfo, NULL, &m_Paneling);
+	m_HResult = D3DXCreateTextureFromFileExW(m_pD3DDevice, L"../../Documentation/PhotoShop Images/User Interface Images/PlayScreen-Blank2.jpg", D3DX_DEFAULT, D3DX_DEFAULT, D3DX_FROM_FILE, 0, D3DFMT_FROM_FILE, D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_FILTER_NONE, NULL, &m_BackgroundInfo, NULL, &m_Background);
 	if(m_HResult != S_OK)
 	{
-		::MessageBoxA(m_hWnd, "Failed to Create Panel Texture From File", "D3DXCreateTextureFromFileExW() Failed", MB_OK | MB_ICONERROR);
-	}
-	
-	// Fire Button //
-	m_HResult = D3DXCreateTextureFromFileExW(m_pD3DDevice, L"../../Documentation/PhotoShop Images/Object Images/ButtonFire.png", D3DX_DEFAULT, D3DX_DEFAULT, D3DX_FROM_FILE, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_FILTER_NONE, NULL, &m_FireButtonInfo, NULL, &m_FireButton);
-	if(m_HResult != S_OK)
-	{
-		::MessageBoxA(m_hWnd, "Failed to Create Fire Button Texture From File", "D3DXCreateTextureFromFileExW() Failed", MB_OK | MB_ICONERROR);
+		::MessageBoxA(m_hWnd, "Failed to Create Texture From File", "D3DXCreateTextureFromFileExW() Failed", MB_OK | MB_ICONERROR);
 	}
 
 	// Friendly //
-	m_HResult = D3DXCreateTextureFromFileExW(m_pD3DDevice, L"../../Documentation/PhotoShop Images/Object Images/ShipFriendly.png", D3DX_DEFAULT, D3DX_DEFAULT, D3DX_FROM_FILE, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_FILTER_NONE, NULL, &m_FriendlyShipInfo, NULL, &m_FriendlyShip);
+	m_HResult = D3DXCreateTextureFromFileExW(m_pD3DDevice, L"../../Documentation/PhotoShop Images/Object Images/ShipFriendly.png", D3DX_DEFAULT, D3DX_DEFAULT, D3DX_FROM_FILE, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_FILTER_NONE, NULL, &m_TextureInfo[0], NULL, &m_Textures[0]);
 	if(m_HResult != S_OK)
 	{
-		::MessageBoxA(m_hWnd, "Failed to Create Friendly Texture From File", "D3DXCreateTextureFromFileExW() Failed", MB_OK | MB_ICONERROR);
+		::MessageBoxA(m_hWnd, "Failed to Create Texture From File", "D3DXCreateTextureFromFileExW() Failed", MB_OK | MB_ICONERROR);
 	}
 
 	// Enemy //
-	m_HResult = D3DXCreateTextureFromFileExW(m_pD3DDevice, L"../../Documentation/PhotoShop Images/Object Images/ShipEnemy.png", D3DX_DEFAULT, D3DX_DEFAULT, D3DX_FROM_FILE, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_FILTER_NONE, NULL, &m_EnemyShipInfo, NULL, &m_EnemyShip);
+	m_HResult = D3DXCreateTextureFromFileExW(m_pD3DDevice, L"../../Documentation/PhotoShop Images/Object Images/ShipEnemy.png", D3DX_DEFAULT, D3DX_DEFAULT, D3DX_FROM_FILE, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_FILTER_NONE, NULL, &m_TextureInfo[1], NULL, &m_Textures[1]);
 	if(m_HResult != S_OK)
 	{
-		::MessageBoxA(m_hWnd, "Failed to Create Enemy Texture From File", "D3DXCreateTextureFromFileExW() Failed", MB_OK | MB_ICONERROR);
-	}
-
-	// Station //
-	m_HResult = D3DXCreateTextureFromFileExW(m_pD3DDevice, L"../../Documentation/PhotoShop Images/Object Images/Station.png", D3DX_DEFAULT, D3DX_DEFAULT, D3DX_FROM_FILE, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_FILTER_NONE, NULL, &m_StationInfo, NULL, &m_Station);
-	if(m_HResult != S_OK)
-	{
-		::MessageBoxA(m_hWnd, "Failed to Create Station Texture From File", "D3DXCreateTextureFromFileExW() Failed", MB_OK | MB_ICONERROR);
+		::MessageBoxA(m_hWnd, "Failed to Create Texture From File", "D3DXCreateTextureFromFileExW() Failed", MB_OK | MB_ICONERROR);
 	}
 
 	// Star //
-	m_HResult = D3DXCreateTextureFromFileExW(m_pD3DDevice, L"../../Documentation/PhotoShop Images/Object Images/StarYellow.png", D3DX_DEFAULT, D3DX_DEFAULT, D3DX_FROM_FILE, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_FILTER_NONE, NULL, &m_StarInfo, NULL, &m_Star);
+	m_HResult = D3DXCreateTextureFromFileExW(m_pD3DDevice, L"../../Documentation/PhotoShop Images/Object Images/StarYellow.png", D3DX_DEFAULT, D3DX_DEFAULT, D3DX_FROM_FILE, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_FILTER_NONE, NULL, &m_TextureInfo[2], NULL, &m_Textures[2]);
 	if(m_HResult != S_OK)
 	{
-		::MessageBoxA(m_hWnd, "Failed to Create Star Texture From File", "D3DXCreateTextureFromFileExW() Failed", MB_OK | MB_ICONERROR);
+		::MessageBoxA(m_hWnd, "Failed to Create Texture From File", "D3DXCreateTextureFromFileExW() Failed", MB_OK | MB_ICONERROR);
+	}
+
+	// Station //
+	m_HResult = D3DXCreateTextureFromFileExW(m_pD3DDevice, L"../../Documentation/PhotoShop Images/Object Images/Station.png", D3DX_DEFAULT, D3DX_DEFAULT, D3DX_FROM_FILE, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_FILTER_NONE, NULL, &m_TextureInfo[3], NULL, &m_Textures[3]);
+	if(m_HResult != S_OK)
+	{
+		::MessageBoxA(m_hWnd, "Failed to Create Texture From File", "D3DXCreateTextureFromFileExW() Failed", MB_OK | MB_ICONERROR);
 	}
 
 	// Error Sprite //
-	m_HResult = D3DXCreateTextureFromFileExW(m_pD3DDevice, L"../../Documentation/PhotoShop Images/Object Images/Error.png", D3DX_DEFAULT, D3DX_DEFAULT, D3DX_FROM_FILE, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_FILTER_NONE, NULL, &m_StarInfo, NULL, &m_Star);
+	m_HResult = D3DXCreateTextureFromFileExW(m_pD3DDevice, L"../../Documentation/PhotoShop Images/Object Images/Error.png", D3DX_DEFAULT, D3DX_DEFAULT, D3DX_FROM_FILE, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_FILTER_NONE, NULL, &m_ErrorInfo, NULL, &m_Error);
 	if(m_HResult != S_OK)
 	{
-		::MessageBoxA(m_hWnd, "Failed to Create Error Texture From File", "D3DXCreateTextureFromFileExW() Failed", MB_OK | MB_ICONERROR);
+		::MessageBoxA(m_hWnd, "Failed to Create Texture From File", "D3DXCreateTextureFromFileExW() Failed", MB_OK | MB_ICONERROR);
 	}
 }

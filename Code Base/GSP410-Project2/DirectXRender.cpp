@@ -20,7 +20,7 @@ void CDirectX::Render(CRenderable* stuffList[], int rNum)
 				{
 
 					// Draw 2D Assests Here //
-					
+
 					// Non Player Textures //
 
 					// Paneling //
@@ -32,43 +32,30 @@ void CDirectX::Render(CRenderable* stuffList[], int rNum)
 					D3DXMatrixMultiply(&m_MatWorld, &m_MatScale, &m_MatTrans); // Multiply scale and translation, store in world //
 					// Set Transform //
 					m_pD3DSprite->SetTransform(&m_MatWorld);
-					m_pD3DSprite->Draw(m_Paneling, 0, &D3DXVECTOR3(m_PanelingInfo.Width/2.0f, m_PanelingInfo.Height/2.0f, 0.0f), 0, D3DCOLOR_XRGB(255, 255, 255));
+					m_pD3DSprite->Draw(m_Background, 0, &D3DXVECTOR3(m_BackgroundInfo.Width/2.0f, m_BackgroundInfo.Height/2.0f, 0.0f), 0, D3DCOLOR_XRGB(255, 255, 255));
 
 					// Draw Renderables //
-					//for(int i=0; i < rNum; i++)
-					//{
-					//	D3DXMatrixScaling(&m_MatScale, 1.0f, 1.0f, 1.0f); // Scaling //
-					//	D3DXMatrixRotationZ(&m_MatRot, D3DXToRadian(stuffList[i]->GetRotation())); // Rotation //
-					//	D3DXMatrixTranslation(&m_MatTrans, stuffList[i]->GetPosition().x, stuffList[i]->GetPosition().y, 0.0f); // Translation //
-					//	D3DXMatrixMultiply(&m_MatScale, &m_MatScale, &m_MatRot); // Multiply scale and rotation, store in scale //
-					//	D3DXMatrixMultiply(&m_MatWorld, &m_MatScale, &m_MatTrans); // Multiply scale and translation, store in world //
-					//	// Set Transform //
-					//	m_pD3DSprite->SetTransform(&m_MatWorld);
-
-					//	switch(rNum)
-					//	{
-					//	case 0:
-					//		// Draw Friendly Ship Sprite //							
-					//		m_pD3DSprite->Draw(m_FriendlyShip, 0, &D3DXVECTOR3(m_FriendlyShipInfo.Width/2.0f, m_FriendlyShipInfo.Height/2.0f, 0.0f), 0, D3DCOLOR_XRGB(255, 255, 255));
-					//		break;
-					//	case 1:
-					//		// Draw Enemy Ship Sprite //							
-					//		m_pD3DSprite->Draw(m_EnemyShip, 0, &D3DXVECTOR3(m_EnemyShipInfo.Width/2.0f, m_EnemyShipInfo.Height/2.0f, 0.0f), 0, D3DCOLOR_XRGB(255, 255, 255));
-					//		break;
-					//	case 2:
-					//		// Draw Station Sprite //
-					//		m_pD3DSprite->Draw(m_Star, 0, &D3DXVECTOR3(m_StarInfo.Width/2.0f, m_StarInfo.Height/2.0f, 0.0f), 0, D3DCOLOR_XRGB(255, 255, 255));
-					//		break;
-					//	case 3:
-					//		// Draw Star Sprite //
-					//		m_pD3DSprite->Draw(m_Station, 0, &D3DXVECTOR3(m_StationInfo.Width/2.0f, m_StationInfo.Height/2.0f, 0.0f), 0, D3DCOLOR_XRGB(255, 255, 255));
-					//		break;
-					//	default:
-					//		// Draw Error Sprite //
-					//		m_pD3DSprite->Draw(m_Error, 0, &D3DXVECTOR3(m_ErrorInfo.Width/2.0f, m_ErrorInfo.Height/2.0f, 0.0f), 0, D3DCOLOR_XRGB(255, 255, 255));
-					//		break;
-					//	}
-					//}
+					for(int i=0; i < rNum; i++)
+					{
+						D3DXMatrixScaling(&m_MatScale, 1.0f, 1.0f, 1.0f); // Scaling //
+						D3DXMatrixRotationZ(&m_MatRot, D3DXToRadian(stuffList[i]->GetRotation())); // Rotation //
+						D3DXMatrixTranslation(&m_MatTrans, stuffList[i]->GetPosition().x, stuffList[i]->GetPosition().y, 0.0f); // Translation //
+						D3DXMatrixMultiply(&m_MatScale, &m_MatScale, &m_MatRot); // Multiply scale and rotation, store in scale //
+						D3DXMatrixMultiply(&m_MatWorld, &m_MatScale, &m_MatTrans); // Multiply scale and translation, store in world //
+						// Set Transform //
+						m_pD3DSprite->SetTransform(&m_MatWorld);
+						switch(stuffList[i]->GetTextureType())
+						{
+						case ME:
+							m_pD3DSprite->Draw(m_Textures[0], NULL, NULL, NULL, NULL);
+						case ENEMY:
+							m_pD3DSprite->Draw(m_Textures[1], NULL, NULL, NULL, NULL);
+						case STAR:
+							m_pD3DSprite->Draw(m_Textures[2], NULL, NULL, NULL, NULL);
+						case STATION:
+							m_pD3DSprite->Draw(m_Textures[3], NULL, NULL, NULL, NULL);
+						}
+					}
 
 					// Close the Sprite //
 					m_HResult = m_pD3DSprite->End();

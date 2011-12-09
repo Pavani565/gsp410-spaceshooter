@@ -31,6 +31,11 @@ private:
 	QuadData		mQuadData;
 
 public:
+
+	//For passing to Render
+	CRenderable*	m_Drawables[12];
+	int				m_NumberOfDrawables;
+
 	Quadrant();
 
 	////////////////////////////////////////////////////////////////////////////
