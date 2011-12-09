@@ -18,6 +18,8 @@ CFriendlyUnit::CFriendlyUnit(void)
 	m_MissileCondition	= 0;
 	m_SEngineCondition	= 0;
 	m_HEngineCondition	= 0;
+
+	m_TextureType = 0;//0 is friendly
 }
 CFriendlyUnit::~CFriendlyUnit()
 {

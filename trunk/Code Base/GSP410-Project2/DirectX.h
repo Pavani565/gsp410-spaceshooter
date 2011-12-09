@@ -33,32 +33,14 @@ private:
 	D3DXMATRIX	m_MatProj;	// Projection Transform Matrix	//
 
 
-	CFriendlyUnit	m_Player;
-
-
 	// Sprite Variables													//
 	ID3DXSprite*		m_pD3DSprite;		// Sprite Object Pointer	//
 
-	IDirect3DTexture9*	m_TempTexture;
-	D3DXIMAGE_INFO		m_TempInfo;
+	IDirect3DTexture9*	m_Background;
+	D3DXIMAGE_INFO		m_BackgroundInfo;
 
-	IDirect3DTexture9*	m_Paneling;
-	D3DXIMAGE_INFO		m_PanelingInfo;
-
-	IDirect3DTexture9*	m_FireButton;
-	D3DXIMAGE_INFO		m_FireButtonInfo;
-
-	IDirect3DTexture9*	m_FriendlyShip;
-	D3DXIMAGE_INFO		m_FriendlyShipInfo;
-
-	IDirect3DTexture9*	m_EnemyShip;
-	D3DXIMAGE_INFO		m_EnemyShipInfo;
-
-	IDirect3DTexture9*	m_Station;
-	D3DXIMAGE_INFO		m_StationInfo;
-
-	IDirect3DTexture9*	m_Star;
-	D3DXIMAGE_INFO		m_StarInfo;
+	IDirect3DTexture9*	m_Textures[4];
+	D3DXIMAGE_INFO		m_TextureInfo[4];
 
 	IDirect3DTexture9*	m_Error;
 	D3DXIMAGE_INFO		m_ErrorInfo;

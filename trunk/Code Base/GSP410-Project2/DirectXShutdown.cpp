@@ -22,36 +22,6 @@ void CDirectX::Shutdown(void)
 		void(m_pD3DFont->Release());
 		m_pD3DFont = NULL;
 	}
-	if(m_FireButton != NULL)
-	{
-		void(m_FireButton->Release());
-		m_FireButton = NULL;
-	}
-	if(m_Paneling != NULL)
-	{
-		void(m_Paneling->Release());
-		m_Paneling = NULL;
-	}
-	if(m_FriendlyShip != NULL)
-	{
-		void(m_FriendlyShip->Release());
-		m_FriendlyShip = NULL;
-	}
-	if(m_EnemyShip != NULL)
-	{
-		void(m_EnemyShip->Release());
-		m_EnemyShip = NULL;
-	}
-	if(m_Station != NULL)
-	{
-		void(m_Station->Release());
-		m_Station = NULL;
-	}
-	if(m_Star != NULL)
-	{
-		void(m_Star->Release());
-		m_Star = NULL;
-	}
 	if(m_Error != NULL)
 	{
 		void(m_Error->Release());
