@@ -6,7 +6,12 @@
 
 Button::Button()
 {
+	mButtonType = -1;
+}
 
+void Button::setButtonType(int aButtonType)
+{
+	mButtonType = aButtonType;
 }
 
 bool Button::Clicked(POINT mouse, Command &cmd)
@@ -19,13 +24,17 @@ bool Button::Clicked(POINT mouse, Command &cmd)
 		   mouse.y >= y - height/2)
 		{
 			//fill command with COMMAND_TYPE
-			
+			cmd.commandType = mButtonType;
 			//fill x & y positions w/ zero
-
+			cmd.sectorPos.row = -1;
+			cmd.sectorPos.col = -1;
 			return true;
 		}
 	}
 	//fill command with INVALID_COMMAND
+	cmd.commandType = INVALID_COMMAND;
 	//fill x and y with zeros
+	cmd.sectorPos.row = -1;
+	cmd.sectorPos.col = -1;
 	return false;
 }

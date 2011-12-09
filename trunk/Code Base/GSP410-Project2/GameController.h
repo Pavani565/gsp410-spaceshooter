@@ -8,6 +8,7 @@
 #include "EnemyUnit.h"
 #include "Structures.h"
 #include "Button.h"
+#include "Quadrant.h"
 #include <time.h>
 #include "Quadrant.h"
 #include "Clickable.h"
