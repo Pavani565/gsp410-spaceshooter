@@ -37,4 +37,6 @@ public:
 
 	bool MouseDown(int Button);
 	bool MouseClick(int Button);
+
+	POINT GetMousePosition(void);
 };

@@ -32,8 +32,8 @@ void CUnit::setTexturePointer(IDirect3DTexture9* TextureAddress)
 void CUnit::setTextureInfo(D3DXIMAGE_INFO TextureInformation)
 {
 	m_TextureInfo = TextureInformation;
-	m_Rect.bottom = m_TextureInfo.Height * m_Scale;
-	m_Rect.right = m_TextureInfo.Width * m_Scale;
+	m_Rect.bottom = long(m_TextureInfo.Height * m_Scale);
+	m_Rect.right = long(m_TextureInfo.Width * m_Scale);
 	m_Rect.left = 0;
 	m_Rect.top = 0;
 	m_Center.x = m_Rect.right/2.0f;
