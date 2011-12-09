@@ -207,6 +207,7 @@ void GameController::CheckInput()
 						break;
 					default:
 						//if not any invalid
+						break;
 					}
 				}
 			}
