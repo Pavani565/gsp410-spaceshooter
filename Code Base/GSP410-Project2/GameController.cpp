@@ -81,6 +81,25 @@ GameController::GameController()
 	//temp way now
 	m_Player.setSector(tempRow, tempCol);
 
+	//fills clickable array with address of buttons and sectors
+
+	for(int i = 0; i< CLICKABLES_SIZE;i++)
+	{
+		if(i < BUTTONS_AMOUNT)
+		{
+			mClickable[i] = &m_Buttons[i];
+		}
+		else
+		{
+			mClickable[i] = &m_ActiveQuad.getSector(i - BUTTONS_AMOUNT);
+		}
+	}
+
+	for(int i = 0; i< BUTTONS_AMOUNT;i++)
+	{
+		m_Buttons[i].setButtonType(i);
+	}
+
 }
 
 
@@ -102,7 +121,7 @@ void GameController::UpdateGame(float DeltaTime)
 		break;
 	case PLAY:
 		CheckInput();
-		Ex_Command();
+		//Ex_Command();
 		UpdateEnemies();
 
 		break;
@@ -147,54 +166,40 @@ void GameController::CheckInput()
 		m_Quad.mQuad[0][0].Clicked()
 		}*/
 
-		Clickable* clickArray[72];
-		for(int i = 0; i < 8; ++i)
-		{
-			if(i < 7)
-			{
-				if(m_Buttons[i].Clicked(UserInput->getPosition(), &m_Command))
-				{
-					//check command for some shit
-
-				}
-			}
-
-			for(int c = 0; i < quadSize; ++i)
-			{
-				if(m_Quad.mQuad[i][c].Clicked(UserInput->getPosition(), &m_Command))
-				{
-					//check command for some shit
-				}
-			}
-
-		}
+		
 
 		if(UserInput->MouseClick(0))
 		{
-			for(i = 0; i< #ofclickables;i++)
+			for(int i = 0; i< CLICKABLES_SIZE;i++)
 			{
-				if(clickable[i]->clicked(UserInput->getPosition(),&m_Command))
+				if(mClickable[i]->Clicked(UserInput->GetMousePosition(),m_Command))
 				{
 					//check command
 					switch(m_Command.commandType)
 					{
 					case ADD_SHIELD_ENERGY:
-						m_Quad.addSheildEnergy1();				
+						m_ActiveQuad.addShieldEnergy1();			
 						break;
 					case ADD_BLASTER_ENERGY:
-						//quad.addblaster
+						m_ActiveQuad.addBlasterEnergy1();		
 						break;
 					case SUB_SHIELD_ENERGY:
 						//quad.subEnerg
+						m_ActiveQuad.subShieldEnergy1();
 						break;
 					case SUB_BLASTER_ENERGY:
+						m_ActiveQuad.subBlasterEnergy1();
 						//quad.subblaster
 						break;
 					case SCAN_LR:
-						//quad.addblaster
+						//QuadData change scanned to true
+						Scan();
 						break;
-					case FIRE_BL:
-						//quad.addblaster
+					case FIRE_BL:						
+						if(m_ActiveQuad.fireBlasters()==false)
+						{
+							//return a false 
+						}
 						break;
 					case GALAXY_MAP:
 						//change game state 
@@ -210,23 +215,23 @@ void GameController::CheckInput()
 		if(UserInput->KeyDown(DIK_Q))
 		{
 			//subtract
-			//m_Quad.subSheildEnergy10();
+			m_ActiveQuad.subShieldEnergy10();
 			//m_Quad.
 		}
 		if(UserInput->KeyDown(DIK_W))
 		{
 			//subtract
-			m_Quad.addSheildEnergy10();
+			m_ActiveQuad.addShieldEnergy10();
 		}
 		if(UserInput->KeyDown(DIK_A))
 		{
 			//subtract
-			m_Quad.subBlasterEnergy10();
+			m_ActiveQuad.subBlasterEnergy10();
 		}
 		if(UserInput->KeyDown(DIK_S))
 		{
 			//subtract
-			m_Quad.subBlasterEnergy10();
+			m_ActiveQuad.addBlasterEnergy10();
 		}
 
 
@@ -248,34 +253,26 @@ void GameController::UpdateEnemies()
 
 }
 
-void GameController::Ex_Command(int commandType)
+
+
+void GameController::Scan()
 {
-	switch(commandType)
+	for(int i = 0; i< GALAXY_SIZE;i++)
 	{
-	case EmptySector://Move Friendly (path check, starting sector, ending sector, access to the sectors)
-		break;
-	case EnemySector: //Shoot Enemy
-		break;
-
-	case StarSector: //Nothing (illegal warning)
-		break;
-	case StationSector: //Move Adjacently
-		break;
-
-	case AddShEnButton: //add energy to shield
-		break;
-	case AddBlEnButton: //add energy to blasters
-		break;
-	case SubShEnButton: //subtract energy from shield
-		break;
-	case SubBlEnButton: //subtract energy from blasters
-		break;
-	case SCAN_LRButton: //initiate long range scan
-		break;
-	case FIRE_BLButton: //fire the blasters
-		break;
-	case GlxyMapButton: //display galaxy map
-		break;
-
+		for(int j = 0; j < GALAXY_SIZE;j++)
+		{
+			if(m_Galaxy[i][j].shipWithin == true)
+			{
+				m_Galaxy[i][j].scanned = true;
+				m_Galaxy[i-1][j-1].scanned = true;
+				m_Galaxy[i][j-1].scanned = true;
+				m_Galaxy[i-1][j].scanned = true;
+				m_Galaxy[i+1][j].scanned = true;
+				m_Galaxy[i-1][j+1].scanned = true;
+				m_Galaxy[i][j+1].scanned = true;
+				m_Galaxy[i+1][j+1].scanned = true;
+				
+			}
+		}
 	}
 }

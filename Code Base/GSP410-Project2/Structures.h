@@ -35,6 +35,7 @@ struct QuadData
 	int		stars;
 	int		spaceStations;
 	bool	scanned;
+	bool	shipWithin;
 };
 
 //struct that determines commands in game
