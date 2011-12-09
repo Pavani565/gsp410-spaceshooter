@@ -20,7 +20,7 @@ const int quadSize = 8;
 
 class Quadrant
 {
-public:
+private:
 	CEnemyUnit		mEnemies[3];
 	CUnit			mStars[7];
 	CFriendlyUnit	mFriendly;
@@ -28,7 +28,7 @@ public:
 	Sector			mQuad[quadSize][quadSize];
 	QuadData		mQuadData;
 
-private:
+public:
 	Quadrant();
 
 	////////////////////////////////////////////////////////////////////////////
@@ -38,7 +38,16 @@ private:
 	//Job      : fills private data of current quadrant based on QuadData.
 	//         : makes list of renderables and deletes renderable if it gets destroyed
 	//Return   : void
-	void LoadQuad(QuadData); 
+	void LoadQuad(QuadData);
+
+	////////////////////////////////////////////////////////////////////////////
+	//Class    : getSector
+	//Param1   : int, row number
+	//Param2   : int, column number
+	//Job      : returns address of sector specified by
+	//		   : uses those ints as indeces for a specific sector in mQuad.
+	//Return   : address of sector.
+	Sector& getSector(int);
 
 	////////////////////////////////////////////////////////////////////////////
 	//Class    : getEmptySector
@@ -48,4 +57,20 @@ private:
 	//		   : checks to see if that sector's mOccupiedType is EMPTY.
 	//Return   : address of empty sector.
 	Sector& getEmptySector();
+
+	/** these functions call friendly's blaster and shield functions **/
+	void addBlasterEnergy1();
+	void addBlasterEnergy10();
+	void subBlasterEnergy1();
+	void subBlasterEnergy10();
+
+	void addShieldEnergy1();
+	void addShieldEnergy10();
+	void subShieldEnergy1();
+	void subShieldEnergy10();
+
+	//returns false if blasters failed
+	bool fireBlasters();
+	/******************************************************************/
+
 };

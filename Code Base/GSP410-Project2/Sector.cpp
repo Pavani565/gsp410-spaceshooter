@@ -12,6 +12,12 @@ Sector::Sector()
 	mOccupiedType	= -1;
 	mEnemyIndex		= -1;
 	mScale			= 0.0f;
+	mSectorNum		= -1;
+}
+
+void Sector::setSectorNum(int aIndex)
+{
+	mSectorNum = aIndex;
 }
 
 void Sector::setContent(int aType)
