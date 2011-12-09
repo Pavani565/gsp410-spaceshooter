@@ -117,3 +117,8 @@ bool CDirectInput::MouseClick(int Button)
 	}
 	return false;
 }
+
+POINT CDirectInput::GetMousePosition(void)
+{
+	return m_MousePosition;
+}
