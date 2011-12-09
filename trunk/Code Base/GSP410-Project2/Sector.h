@@ -18,9 +18,13 @@ private:
 	int		mOccupiedType;
 	int		mEnemyIndex;
 	float	mScale;
+	int		mSectorNum;
 
 public:
 	Sector();
+
+	void setSectorNum(int);
+	int	 getSectorNum(){ return mSectorNum; }
 
 	///////////////////////////////////////////////////////
 	//name    : setContent
