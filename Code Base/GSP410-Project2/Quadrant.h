@@ -10,6 +10,8 @@
 #include "EnemyUnit.h"
 #include "FriendlyUnit.h"
 
+
+
 //MAKE INTO SINGLETON DESIGN
 //needs to have firing mechanism that:
 //	uses mouse x and y to determine who was clicked

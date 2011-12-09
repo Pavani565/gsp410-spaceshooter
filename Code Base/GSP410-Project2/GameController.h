@@ -9,6 +9,8 @@
 #include "Structures.h"
 #include "Button.h"
 #include <time.h>
+#include "Quadrant.h"
+#include "Clickable.h"
 
 class GameController
 {
@@ -21,6 +23,7 @@ private:
 
 	QuadData		m_Galaxy[GALAXY_SIZE][GALAXY_SIZE];
 
+	//clickable
 	Button			m_Buttons[BUTTONS_AMOUNT];
 
 	CDirectInput*	UserInput;
@@ -28,6 +31,12 @@ private:
 	int				m_GameTurns;
 
 	int				m_CurrentTurn;
+
+	GAMESTATE		m_Control_State;
+
+	Quadrant		m_Quad;
+
+	Command			m_Command;
 
 public:
 
@@ -37,6 +46,14 @@ public:
 	void UpdateGame(float DeltaTime);
 
 	void LoadTextures(void);
+
+	void CheckInput();
+
+	void ShowResults();
+
+	void UpdateEnemies();
+
+	void Ex_Command(int commandType);
 
 
 };
