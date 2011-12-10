@@ -15,6 +15,12 @@ Sector::Sector()
 	mSectorNum		= -1;
 }
 
+void Sector::setQuadPos(int aRow, int aCol)
+{
+	mQuadPos.row = aRow;
+	mQuadPos.col = aCol;
+}
+
 void Sector::setSectorNum(int aIndex)
 {
 	mSectorNum = aIndex;
@@ -45,24 +51,16 @@ bool Sector::Clicked(POINT mouse, Command &cmd)
 		   mouse.y >= y - height/2)
 		{
 			//fill command with COMMAND_TYPE
-			
+			cmd.commandType = mOccupiedType;
 			//fill x & y positions
-
+			cmd.sectorPos = mQuadPos;
 			return true;
 		}
 	}
 	//fill commandType with INVALID_COMMAND
-	//fill x and y with zeros
+	cmd.commandType = INVALID_COMMAND;
+	//fill x and y with invalid data
+	cmd.sectorPos.row = -1;
+	cmd.sectorPos.col = -1;
 	return false;
 }
-
-//void Sector::setOccupation(int aType)
-//{
-//	//set occupied bool to true
-//	occupied = true;
-//	type	 = aType;
-//}
-//int	Sector::occupiedWith()
-//{
-//
-//}

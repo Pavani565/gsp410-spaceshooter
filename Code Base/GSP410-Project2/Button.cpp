@@ -25,7 +25,7 @@ bool Button::Clicked(POINT mouse, Command &cmd)
 		{
 			//fill command with COMMAND_TYPE
 			cmd.commandType = mButtonType;
-			//fill x & y positions w/ zero
+			//fill x & y positions w/ invalid data
 			cmd.sectorPos.row = -1;
 			cmd.sectorPos.col = -1;
 			return true;
@@ -33,7 +33,7 @@ bool Button::Clicked(POINT mouse, Command &cmd)
 	}
 	//fill command with INVALID_COMMAND
 	cmd.commandType = INVALID_COMMAND;
-	//fill x and y with zeros
+	//fill x and y with invalid data
 	cmd.sectorPos.row = -1;
 	cmd.sectorPos.col = -1;
 	return false;

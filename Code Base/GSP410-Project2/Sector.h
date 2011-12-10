@@ -4,6 +4,7 @@
 //sectors that make up a quadrant
 #pragma once
 #include "Clickable.h"
+#include "Definitions.h"
 
 //what do they need?
 //NEEDS TO BE DERIVED FROM CLICKABLE
@@ -23,8 +24,13 @@ private:
 public:
 	Sector();
 
+	void setQuadPos(int, int);
+	RowCol getQuadPos(){ return mQuadPos; }
+
 	void setSectorNum(int);
 	int	 getSectorNum(){ return mSectorNum; }
+
+	bool isOccupied(){ return mOccupied; }
 
 	///////////////////////////////////////////////////////
 	//name    : setContent
@@ -63,8 +69,4 @@ public:
 	//		  : when false it fills command object with INVALID_COMMAND
 	//		  : and sets command's xy to -1.
 	bool virtual Clicked(POINT, Command &);
-
-	/**
-	* sets/gets
-	**/
 };
