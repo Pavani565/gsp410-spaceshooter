@@ -140,7 +140,7 @@ void GameController::LoadTextures(void)
 
 void GameController::CheckInput()
 {
-
+	UserInput = CDirectInput::GetInstance();
 	//get the state so i know what input matters
 
 	switch(m_Control_State)
@@ -237,7 +237,7 @@ void GameController::CheckInput()
 						if(m_ActiveQuad.fireBlasters()==true)
 						{
 							m_TotalNumOfEnemies -= m_ActiveQuad.destroyedEnemies();
-							m_TotalNumOfStations -= m_ActiveQuad.destroyedStations();
+							//m_TotalNumOfStations -= m_ActiveQuad.destroyedStations();
 						}
 
 
