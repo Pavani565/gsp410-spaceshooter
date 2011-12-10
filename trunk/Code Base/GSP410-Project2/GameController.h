@@ -16,6 +16,10 @@
 class GameController
 {
 private:
+
+	int				m_TotalNumOfEnemies;
+	int				m_TotalNumOfStations;
+
 	// an array of objects to draw;
 
 	QuadData		m_Galaxy[GALAXY_SIZE][GALAXY_SIZE];
@@ -38,6 +42,9 @@ private:
 
 	Clickable*		mClickable[CLICKABLES_SIZE];
 
+	int				m_QuadRow;
+	int				m_QuadCol;
+
 
 
 public:
@@ -59,4 +66,5 @@ public:
 	int			 GetRenderListNumber(void);
 
 	void Scan();
+	void Check_Win_Lose();
 };
