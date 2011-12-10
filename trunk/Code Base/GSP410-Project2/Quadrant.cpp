@@ -63,6 +63,7 @@ void Quadrant::LoadQuad(QuadData aQuad)
 	mFriendly.setX(mQuad[mFriendly.getSector().row][mFriendly.getSector().col].getSectorXCoord());
 	mFriendly.setY(mQuad[mFriendly.getSector().row][mFriendly.getSector().col].getSectorYCoord());
 	mQuad[mFriendly.getSector().row][mFriendly.getSector().col].setContent(ME);
+	mQuad[mFriendly.getSector().row][mFriendly.getSector().col].setOccupied(true);
 	
 	//place enemies in sectors and set those sectors to ENEMY and 
 	for(int i = 0; i < mQuadData.enemies; ++i)
@@ -70,7 +71,8 @@ void Quadrant::LoadQuad(QuadData aQuad)
 		mEnemies[i].setSector(getEmptySector().getQuadPos());
 		mEnemies[i].setX(mQuad[mEnemies[i].getSector().row][ mEnemies[i].getSector().col].getSectorXCoord());
 		mEnemies[i].setY(mQuad[mEnemies[i].getSector().row][ mEnemies[i].getSector().col].getSectorYCoord());
-		mQuad[mEnemies[i].getSector().row][ mEnemies[i].getSector().col].setContent(ENEMY, i);
+		mQuad[mEnemies[i].getSector().row][mEnemies[i].getSector().col].setContent(ENEMY, i);
+		mQuad[mEnemies[i].getSector().row][mEnemies[i].getSector().col].setOccupied(true);
 	}
 
 	for(int i = 0; i < mQuadData.stars; i++)
@@ -79,6 +81,7 @@ void Quadrant::LoadQuad(QuadData aQuad)
 		mStars[i].setX(mQuad[mStars[i].getSector().row][mStars[i].getSector().col].getSectorXCoord());
 		mStars[i].setY(mQuad[mStars[i].getSector().row][mStars[i].getSector().col].getSectorYCoord());
 		mQuad[mStars[i].getSector().row][mStars[i].getSector().col].setContent(STAR);
+		mQuad[mStars[i].getSector().row][mStars[i].getSector().col].setOccupied(true);
 	}
 	if(mQuadData.spaceStations > 0)
 	{
@@ -86,6 +89,7 @@ void Quadrant::LoadQuad(QuadData aQuad)
 		mStation.setX(mQuad[mStation.getSector().row][mStation.getSector().col].getSectorXCoord());
 		mStation.setY(mQuad[mStation.getSector().row][mStation.getSector().col].getSectorYCoord());
 		mQuad[mStation.getSector().row][mStation.getSector().col].setContent(STATION);
+		mQuad[mStation.getSector().row][mStation.getSector().col].setOccupied(true);
 	}
 
 
@@ -194,6 +198,7 @@ void Quadrant::moveEnemy()
 {
 	//call get emptySector
 
+
 	//set enemy[index] to emptySector's position.
 
 }
@@ -202,7 +207,7 @@ int Quadrant::destroyedEnemies()
 {
 	return 0;
 }
-int Quadrant::destoryedStations()
+int Quadrant::destroyedStations()
 {
 	return 0;
 }
