@@ -4,7 +4,7 @@
 #define WINDOW_CLASS	L"SpaceShooter"
 #define WINDOW_TITLE	L"SpaceShooter"
 
-#define WINDOWS_MODE	1		// Windowed(1) or Fullscreen(0) //
+#define WINDOWS_MODE	0		// Windowed(1) or Fullscreen(0) //
 
 #define SCREEN_WIDTH	1366	// Screen Width Specification //
 #define SCREEN_HEIGHT	768		// Screen Height Specifiation //

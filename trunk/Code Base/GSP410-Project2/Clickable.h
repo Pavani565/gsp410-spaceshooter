@@ -14,6 +14,11 @@ protected:
 	int x, y, width, height;
 public:
 	virtual bool Clicked(POINT, Command &) = 0;
+	void setAll(int newX, int newY, int newHeight, int newWidth)
+	{
+		x = newX;	height = newHeight;
+		y = newY;	width = newWidth;
+	}
 	Clickable()
 	{
 		height = 64;
