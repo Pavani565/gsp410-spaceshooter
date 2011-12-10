@@ -19,6 +19,10 @@ Quadrant::Quadrant()
 		{
 			mQuad[r][c].setQuadPos(r,c);
 			mQuad[r][c].setSectorNum(count);
+			// Giving each sector its X and Y screen coords //
+			mQuad[r][c].setSectorCoord(446+(64*r), 96+(64*c));
+			mQuad[r][c].setOriginScale(1.0f);
+			//	End											//
 			count++;
 		}
 	}
@@ -38,15 +42,13 @@ void Quadrant::makeDrawableList()
 	{
 		m_Drawables[Count] = &mStars[i];
 	}
-	Count = m_NumberOfDrawables;
 	m_NumberOfDrawables += mQuadData.spaceStations;
 	for(int i = 0; i < mQuadData.spaceStations; i++, Count++)
 	{
 		m_Drawables[Count] = &mStation;
 	}
-	Count = m_NumberOfDrawables;
 	m_NumberOfDrawables += 1; // for friendly ship
-	m_Drawables[Count] = &mFriendly;
+	m_Drawables[Count++] = &mFriendly;
 }
 
 void Quadrant::LoadQuad(QuadData aQuad)
@@ -58,34 +60,35 @@ void Quadrant::LoadQuad(QuadData aQuad)
 	//set postions of enemies, star, stations, and friendly
 	//call get empty sector
 	mFriendly.setSector(getEmptySector().getQuadPos());
+	mFriendly.setX(mQuad[mFriendly.getSector().row][mFriendly.getSector().col].getSectorXCoord());
+	mFriendly.setY(mQuad[mFriendly.getSector().row][mFriendly.getSector().col].getSectorYCoord());
 	mQuad[mFriendly.getSector().row][mFriendly.getSector().col].setContent(ME);
 	
-	//place enemies in sectors and set those sectors to ENEMY.
-	if(mQuadData.enemies > 0)
+	//place enemies in sectors and set those sectors to ENEMY and 
+	for(int i = 0; i < mQuadData.enemies; ++i)
 	{
-		for(int i = 0; i < mQuadData.enemies; ++i)
-		{
-			mEnemies[i].setSector(getEmptySector().getQuadPos());
-			mQuad[mEnemies[i].getSector().row][ mEnemies[i].getSector().col].setContent(ENEMY, i);
-		}
+		mEnemies[i].setSector(getEmptySector().getQuadPos());
+		mEnemies[i].setX(mQuad[mEnemies[i].getSector().row][ mEnemies[i].getSector().col].getSectorXCoord());
+		mEnemies[i].setY(mQuad[mEnemies[i].getSector().row][ mEnemies[i].getSector().col].getSectorYCoord());
+		mQuad[mEnemies[i].getSector().row][ mEnemies[i].getSector().col].setContent(ENEMY, i);
 	}
 
-	//place space stations, if there are any in this active quadrant
+	for(int i = 0; i < mQuadData.stars; i++)
+	{
+		mStars[i].setSector(getEmptySector().getQuadPos());
+		mStars[i].setX(mQuad[mStars[i].getSector().row][mStars[i].getSector().col].getSectorXCoord());
+		mStars[i].setY(mQuad[mStars[i].getSector().row][mStars[i].getSector().col].getSectorYCoord());
+		mQuad[mStars[i].getSector().row][mStars[i].getSector().col].setContent(STAR);
+	}
 	if(mQuadData.spaceStations > 0)
 	{
 		mStation.setSector(getEmptySector().getQuadPos());
+		mStation.setX(mQuad[mStation.getSector().row][mStation.getSector().col].getSectorXCoord());
+		mStation.setY(mQuad[mStation.getSector().row][mStation.getSector().col].getSectorYCoord());
 		mQuad[mStation.getSector().row][mStation.getSector().col].setContent(STATION);
 	}
 
-	//place stars
-	if(mQuadData.stars > 0)
-	{
-		for(int i = 0; i < mQuadData.stars; ++i)
-		{
-			mStars[i].setSector(getEmptySector().getQuadPos());
-			mQuad[mStars[i].getSector().row][mStars[i].getSector().col].setContent(STAR);
-		}
-	}
+
 }
 
 Sector& Quadrant::getSector(int aIndex)
@@ -111,14 +114,12 @@ Sector& Quadrant::getEmptySector()
 	int randRow, randCol;
 	randRow = randCol = -1;
 	bool finished = false;
-	
+	//srand(timeGetTime());
 	while(!finished)
 	{
 		//: generates two random ints withing range of quadSize.
-		srand(timeGetTime());
-		randRow = rand() % quadSize+1;
-		srand(timeGetTime());
-		randCol = rand() % quadSize+1;
+		randRow = rand() % GALAXY_SIZE;
+		randCol = rand() % GALAXY_SIZE;
 
 		//: checks to see if that sector's mOccupiedType is EMPTY.
 		if(!mQuad[randRow][randCol].isOccupied())

@@ -38,26 +38,28 @@ void CDirectX::Render(CRenderable* stuffList[], int rNum)
 					for(int i=0; i < rNum; i++)
 					{
 						D3DXMatrixScaling(&m_MatScale, 1.0f, 1.0f, 1.0f); // Scaling //
-						D3DXMatrixRotationZ(&m_MatRot, D3DXToRadian(stuffList[i]->GetRotation())); // Rotation //
+						D3DXMatrixRotationZ(&m_MatRot, /*D3DXToRadian(stuffList[i]->GetRotation())*/0.0f); // Rotation //
 						D3DXMatrixTranslation(&m_MatTrans, stuffList[i]->GetPosition().x, stuffList[i]->GetPosition().y, 0.0f); // Translation //
 						D3DXMatrixMultiply(&m_MatScale, &m_MatScale, &m_MatRot); // Multiply scale and rotation, store in scale //
 						D3DXMatrixMultiply(&m_MatWorld, &m_MatScale, &m_MatTrans); // Multiply scale and translation, store in world //
 						// Set Transform //
 						m_pD3DSprite->SetTransform(&m_MatWorld);
 
+						D3DXVECTOR3 test = stuffList[i]->GetPosition();
+
 						switch(stuffList[i]->GetTextureType())
 						{
-						case ME:
-							m_pD3DSprite->Draw(m_Textures[0], NULL, NULL, NULL, NULL);
+						case 0://Friendly
+							m_pD3DSprite->Draw(m_Textures[0], NULL, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
 							break;
-						case ENEMY:
-							m_pD3DSprite->Draw(m_Textures[1], NULL, NULL, NULL, NULL);
+						case 1://Enemy
+							m_pD3DSprite->Draw(m_Textures[1], NULL, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
 							break;
-						case STAR:
-							m_pD3DSprite->Draw(m_Textures[2], NULL, NULL, NULL, NULL);
+						case 2://Star
+							m_pD3DSprite->Draw(m_Textures[2], NULL, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
 							break;
-						case STATION:
-							m_pD3DSprite->Draw(m_Textures[3], NULL, NULL, NULL, NULL);
+						case 3://Station
+							m_pD3DSprite->Draw(m_Textures[3], NULL, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
 							break;
 						default:
 							m_pD3DSprite->Draw(m_Error, 0, &D3DXVECTOR3(m_ErrorInfo.Width/2.0f, m_ErrorInfo.Height/2.0f, 0.0f), 0, D3DCOLOR_XRGB(255, 255, 255));

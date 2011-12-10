@@ -64,3 +64,17 @@ bool Sector::Clicked(POINT mouse, Command &cmd)
 	cmd.sectorPos.col = -1;
 	return false;
 }
+
+void Sector::setSectorCoord(int newX, int newY)
+{
+	x = newX;
+	y = newY;
+}
+int Sector::getSectorXCoord(void)
+{
+	return x;
+}
+int Sector::getSectorYCoord(void)
+{
+	return y;
+}

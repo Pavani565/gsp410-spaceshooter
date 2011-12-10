@@ -14,7 +14,13 @@ protected:
 	int x, y, width, height;
 public:
 	virtual bool Clicked(POINT, Command &) = 0;
-
+	Clickable()
+	{
+		height = 64;
+		width = 64;
+		x = 0;
+		y = 0;
+	}
 	/**
 	* sets/gets
 	**/

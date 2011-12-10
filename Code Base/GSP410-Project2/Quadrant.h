@@ -9,6 +9,8 @@
 #include "Unit.h"
 #include "EnemyUnit.h"
 #include "FriendlyUnit.h"
+#include "Star.h"
+#include "Station.h"
 
 
 
@@ -24,9 +26,9 @@ class Quadrant
 {
 private:
 	CEnemyUnit		mEnemies[3];
-	CUnit			mStars[7];
+	CStar			mStars[7];
 	CFriendlyUnit	mFriendly;
-	CUnit			mStation;
+	CStation		mStation;
 	Sector			mQuad[quadSize][quadSize];
 	QuadData		mQuadData;
 

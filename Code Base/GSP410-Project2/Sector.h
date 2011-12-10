@@ -30,6 +30,10 @@ public:
 	void setSectorNum(int);
 	int	 getSectorNum(){ return mSectorNum; }
 
+	void setSectorCoord(int newX, int newY);
+	int getSectorXCoord(void);
+	int getSectorYCoord(void);
+
 	bool isOccupied(){ return mOccupied; }
 
 	///////////////////////////////////////////////////////
