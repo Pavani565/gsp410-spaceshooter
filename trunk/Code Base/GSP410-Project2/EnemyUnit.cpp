@@ -5,7 +5,8 @@ const int CEnemyUnit::m_MaxEnergy = MAX_ENEMY_ENERGY;
 
 CEnemyUnit::CEnemyUnit(void)
 {
-	m_ShipEnergy = m_MaxEnergy;
+	m_ShipEnergy = 200;
+	m_CombatState = false;
 	m_TextureType = 1; // 1 = Enemy
 }
 

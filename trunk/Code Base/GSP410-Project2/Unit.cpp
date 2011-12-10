@@ -18,7 +18,7 @@ void CUnit::setY(float newY)
 void CUnit::setSector(int row, int col)
 {
 	m_MySector.row = row;
-	m_MySector.col = col;
+	m_MySector.col = col;	
 }
 void CUnit::setSector(RowCol sector)
 {
