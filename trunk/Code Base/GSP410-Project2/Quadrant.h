@@ -38,6 +38,9 @@ public:
 
 	Quadrant();
 
+	//kevin's algorithm
+	void makeDrawableList();
+
 	////////////////////////////////////////////////////////////////////////////
 	//Class    : LoadQuad
 	//Param1   : QuadData struct that consists of three ints that make up
@@ -64,8 +67,10 @@ public:
 	//		   : checks to see if that sector's mOccupiedType is EMPTY.
 	//Return   : address of empty sector.
 	Sector& getEmptySector();
+	
 
-	/** these functions call friendly's blaster and shield functions **/
+	/******************************************************************/
+	/** these functions call friendly's blaster, missiles, and shield functions **/
 	void addBlasterEnergy1();
 	void addBlasterEnergy10();
 	void subBlasterEnergy1();
@@ -78,6 +83,30 @@ public:
 
 	//returns false if blasters failed
 	bool fireBlasters();
+
+	//returns false if missile failed
+	bool fireMissiles(Command);
+
+	//returns false if ship doesn't have enough fuel to move
+	bool moveFriendly(Command);
+
+	void moveEnemy();
+
+	////////////////////////////////////////////////////////////////////////////
+	//Class    : destroyedEnemies
+	//Param1   : void
+	//Job      : Call after fireBlasters and fireMissiles
+	//		   : Calculates how many enemies, if any, were destroyed
+	//Return   : int, returns how many enemies were destroyed.
+	int	 destroyedEnemies();
+	
+	////////////////////////////////////////////////////////////////////////////
+	//Class    : destoryedStations
+	//Param1   : void
+	//Job      : Call after moveFriendly and fireMissiles
+	//		   : Calculates how many stations, if any, were destroyed
+	//Return   : int, returns how many stations were destroyed.
+	int	 destoryedStations();
 	/******************************************************************/
 
 };

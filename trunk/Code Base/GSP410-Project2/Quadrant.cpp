@@ -17,16 +17,15 @@ Quadrant::Quadrant()
 	{
 		for(int c = 0; c < quadSize; ++c)
 		{
+			mQuad[r][c].setQuadPos(r,c);
 			mQuad[r][c].setSectorNum(count);
 			count++;
 		}
 	}
 }
 
-void Quadrant::LoadQuad(QuadData aQuad)
+void Quadrant::makeDrawableList()
 {
-	mQuadData = aQuad;
-
 	//set all stuff
 	m_NumberOfDrawables = mQuadData.enemies;
 	for(int i = 0; i < m_NumberOfDrawables; i++)
@@ -48,6 +47,25 @@ void Quadrant::LoadQuad(QuadData aQuad)
 	Count = m_NumberOfDrawables;
 	m_NumberOfDrawables += 1; // for friendly ship
 	m_Drawables[Count] = &mFriendly;
+}
+
+void Quadrant::LoadQuad(QuadData aQuad)
+{
+	mQuadData = aQuad;
+
+	makeDrawableList();
+
+	//set postions of enemies, star, stations, and friendly
+	//call get empty sector
+	mFriendly.setSector(getEmptySector().getQuadPos());
+	mQuad[mFriendly.getSector().row][mFriendly.getSector().col].setContent(ME);
+	
+	//place enemies in sectors and set those sectors to ENEMY and 
+	for(int i = 0; i < mQuadData.enemies; ++i)
+	{
+		mEnemies[i].setSector(getEmptySector().getQuadPos());
+		mQuad[mEnemies[i].getSector().row][ mEnemies[i].getSector().col].setContent(ENEMY, i);
+	}
 
 }
 
@@ -70,18 +88,29 @@ Sector& Quadrant::getSector(int aIndex)
 
 Sector& Quadrant::getEmptySector()
 {
-	//: generates two random ints withing range of quadSize.
+	
 	int randRow, randCol;
-	srand(timeGetTime());
-	randRow = rand() % quadSize+1;
-	srand(timeGetTime());
-	randCol = rand() % quadSize+1;
+	randRow = randCol = -1;
+	bool finished = false;
+	
+	while(!finished)
+	{
+		//: generates two random ints withing range of quadSize.
+		srand(timeGetTime());
+		randRow = rand() % quadSize+1;
+		srand(timeGetTime());
+		randCol = rand() % quadSize+1;
 
-	//: uses those ints as indeces for a specific sector in mQuad.
-	//: checks to see if that sector's mOccupiedType is EMPTY.
-	
-	
-	return mQuad[0][0];
+		//: checks to see if that sector's mOccupiedType is EMPTY.
+		if(!mQuad[randRow][randCol].isOccupied())
+		{
+			finished = true;
+			//: uses those ints as indeces for a specific sector in mQuad.
+			return mQuad[randRow][randCol];
+		}
+
+	}	
+	return mQuad[randRow][randCol];
 }
 
 void Quadrant::addBlasterEnergy1()
@@ -127,8 +156,33 @@ bool Quadrant::fireBlasters()
 
 	//if false
 		return false;
-	
-	
+}
 
+bool Quadrant::fireMissiles(Command cmd)
+{
 
+	return false;
+}
+
+bool Quadrant::moveFriendly(Command cmd)
+{
+
+	return false;
+}
+
+void Quadrant::moveEnemy()
+{
+	//call get emptySector
+
+	//set enemy[index] to emptySector's position.
+
+}
+
+int Quadrant::destroyedEnemies()
+{
+	return 0;
+}
+int Quadrant::destoryedStations()
+{
+	return 0;
 }
