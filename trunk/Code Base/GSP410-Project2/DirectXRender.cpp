@@ -44,16 +44,24 @@ void CDirectX::Render(CRenderable* stuffList[], int rNum)
 						D3DXMatrixMultiply(&m_MatWorld, &m_MatScale, &m_MatTrans); // Multiply scale and translation, store in world //
 						// Set Transform //
 						m_pD3DSprite->SetTransform(&m_MatWorld);
+
 						switch(stuffList[i]->GetTextureType())
 						{
 						case ME:
 							m_pD3DSprite->Draw(m_Textures[0], NULL, NULL, NULL, NULL);
+							break;
 						case ENEMY:
 							m_pD3DSprite->Draw(m_Textures[1], NULL, NULL, NULL, NULL);
+							break;
 						case STAR:
 							m_pD3DSprite->Draw(m_Textures[2], NULL, NULL, NULL, NULL);
+							break;
 						case STATION:
 							m_pD3DSprite->Draw(m_Textures[3], NULL, NULL, NULL, NULL);
+							break;
+						default:
+							m_pD3DSprite->Draw(m_Error, 0, &D3DXVECTOR3(m_ErrorInfo.Width/2.0f, m_ErrorInfo.Height/2.0f, 0.0f), 0, D3DCOLOR_XRGB(255, 255, 255));
+							break;
 						}
 					}
 
