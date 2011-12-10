@@ -111,16 +111,17 @@ void GameController::UpdateGame(float DeltaTime)
 
 		break;
 	case GAMEOVER:
-		CheckInput();
 		ShowResults();
+		CheckInput();
+
 		break;
 	case DISPLAYGMAP:
 		CheckInput();
 		break;
 	case PLAY:
 		CheckInput();
-		//Ex_Command();
-		UpdateEnemies();
+		Check_Win_Lose();
+
 
 		break;
 	}
@@ -147,14 +148,53 @@ void GameController::CheckInput()
 	case MENU:
 		//posible mouse clicks
 		//possible enter keyboard
+		if(UserInput->KeyDown(DIK_RETURN))
+		{
+			m_Control_State = PLAY;
+		}
 
 		break;
 	case GAMEOVER:
+
+		if(UserInput->KeyDown(DIK_RETURN))
+		{
+			::PostQuitMessage(0);
+		}
+
 		//mouse
 		//possible enter keyboard
 		break;
 	case DISPLAYGMAP:
 		//possible enter keyboard
+
+		//check which sector was click
+		if(UserInput->MouseClick(0))
+		{
+			for(int i = BUTTONS_AMOUNT-1;i < CLICKABLES_SIZE;i++)
+			{
+				if(mClickable[i]->Clicked(UserInput->GetMousePosition(),m_Command))
+				{
+					m_Control_State = PLAY;
+					break;
+				}
+
+				if(mClickable[i]->Clicked(UserInput->GetMousePosition(),m_Command))
+				{
+					m_QuadRow = m_Command.sectorPos.row;
+					m_QuadCol =	m_Command.sectorPos.col;
+					m_ActiveQuad.LoadQuad(m_Galaxy[m_QuadRow][m_QuadCol]);
+					m_GameTurns++;
+
+					m_Control_State = PLAY;
+				}
+			}
+
+		}
+
+
+
+
+
 		break;
 	case PLAY:
 		//keyboard
@@ -164,7 +204,7 @@ void GameController::CheckInput()
 		m_Quad.mQuad[0][0].Clicked()
 		}*/
 
-		
+
 
 		if(UserInput->MouseClick(0))
 		{
@@ -194,10 +234,13 @@ void GameController::CheckInput()
 						Scan();
 						break;
 					case FIRE_BL:						
-						if(m_ActiveQuad.fireBlasters()==false)
+						if(m_ActiveQuad.fireBlasters()==true)
 						{
-							//return a false 
+							m_TotalNumOfEnemies -= m_ActiveQuad.destroyedEnemies();
+							m_TotalNumOfStations -= m_ActiveQuad.destroyedStations();
 						}
+
+
 						break;
 					case GALAXY_MAP:
 						//change game state 
@@ -205,8 +248,7 @@ void GameController::CheckInput()
 						break;
 					default:
 						break;
-						//if not any invalid
-						break;
+						
 					}
 				}
 			}
@@ -248,10 +290,6 @@ void GameController::ShowResults()
 
 }
 
-void GameController::UpdateEnemies()
-{
-
-}
 
 
 
@@ -271,7 +309,7 @@ void GameController::Scan()
 				m_Galaxy[i-1][j+1].scanned = true;
 				m_Galaxy[i][j+1].scanned = true;
 				m_Galaxy[i+1][j+1].scanned = true;
-				
+
 			}
 		}
 	}
@@ -285,4 +323,16 @@ CRenderable** GameController::GetRenderList(void)
 int GameController::GetRenderListNumber(void)
 {
 	return m_ActiveQuad.m_NumberOfDrawables;
+}
+
+void GameController::Check_Win_Lose()
+{
+	if(m_TotalNumOfEnemies == 0)
+	{
+		m_Control_State = GAMEOVER;
+	}
+	if(m_TotalNumOfStations == 0)
+	{
+		m_Control_State = GAMEOVER;
+	}
 }
