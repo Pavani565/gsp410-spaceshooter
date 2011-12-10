@@ -22,18 +22,21 @@ GameController::GameController()
 			//enemies generation
 			if(randomChance <= 2)
 			{
+				m_TotalNumOfEnemies+= 3;
 				m_Galaxy[col][row].enemies = 3;
 			}
 			else
 			{
 				if(randomChance <= 5)
 				{
+					m_TotalNumOfEnemies+=2;
 					m_Galaxy[col][row].enemies = 2;
 				}
 				else
 				{
 					if(randomChance <= 20)
 					{
+						m_TotalNumOfEnemies+=1;
 						m_Galaxy[col][row].enemies = 1;
 					}
 					else
@@ -97,6 +100,13 @@ GameController::GameController()
 	{
 		m_Buttons[i].setButtonType(i);
 	}
+	m_Buttons[0].setAll(1194, 114, 48, 48);
+	m_Buttons[1].setAll(1194, 292, 48, 48);
+	m_Buttons[2].setAll(1093, 114, 48, 48);
+	m_Buttons[3].setAll(1093, 292, 48, 48);
+	m_Buttons[4].setAll(93, 471, 265, 282);
+	// fire blasters button
+	// Galaxy map button
 
 }
 
@@ -333,6 +343,6 @@ void GameController::Check_Win_Lose()
 	}
 	if(m_TotalNumOfStations == 0)
 	{
-		m_Control_State = GAMEOVER;
+		//m_Control_State = GAMEOVER;
 	}
 }
