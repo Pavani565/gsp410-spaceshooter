@@ -34,6 +34,7 @@ public:
 	int getSectorXCoord(void);
 	int getSectorYCoord(void);
 
+	void setOccupied(bool aBool){ mOccupied = aBool; }
 	bool isOccupied(){ return mOccupied; }
 
 	///////////////////////////////////////////////////////

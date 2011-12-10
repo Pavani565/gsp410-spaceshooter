@@ -108,7 +108,7 @@ public:
 	//Job      : Call after moveFriendly and fireMissiles
 	//		   : Calculates how many stations, if any, were destroyed
 	//Return   : int, returns how many stations were destroyed.
-	int	 destoryedStations();
+	int	 destroyedStations();
 	/******************************************************************/
 
 };
