@@ -60,13 +60,32 @@ void Quadrant::LoadQuad(QuadData aQuad)
 	mFriendly.setSector(getEmptySector().getQuadPos());
 	mQuad[mFriendly.getSector().row][mFriendly.getSector().col].setContent(ME);
 	
-	//place enemies in sectors and set those sectors to ENEMY and 
-	for(int i = 0; i < mQuadData.enemies; ++i)
+	//place enemies in sectors and set those sectors to ENEMY.
+	if(mQuadData.enemies > 0)
 	{
-		mEnemies[i].setSector(getEmptySector().getQuadPos());
-		mQuad[mEnemies[i].getSector().row][ mEnemies[i].getSector().col].setContent(ENEMY, i);
+		for(int i = 0; i < mQuadData.enemies; ++i)
+		{
+			mEnemies[i].setSector(getEmptySector().getQuadPos());
+			mQuad[mEnemies[i].getSector().row][ mEnemies[i].getSector().col].setContent(ENEMY, i);
+		}
 	}
 
+	//place space stations, if there are any in this active quadrant
+	if(mQuadData.spaceStations > 0)
+	{
+		mStation.setSector(getEmptySector().getQuadPos());
+		mQuad[mStation.getSector().row][mStation.getSector().col].setContent(STATION);
+	}
+
+	//place stars
+	if(mQuadData.stars > 0)
+	{
+		for(int i = 0; i < mQuadData.stars; ++i)
+		{
+			mStars[i].setSector(getEmptySector().getQuadPos());
+			mQuad[mStars[i].getSector().row][mStars[i].getSector().col].setContent(STAR);
+		}
+	}
 }
 
 Sector& Quadrant::getSector(int aIndex)
