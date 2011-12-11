@@ -64,6 +64,7 @@ public:
 
 	CRenderable** GetRenderList(void);
 	int			 GetRenderListNumber(void);
+	CFriendlyUnit GetFriendlyUnit(void);
 
 	void Scan();
 	void Check_Win_Lose();

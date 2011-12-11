@@ -100,10 +100,10 @@ GameController::GameController()
 	{
 		m_Buttons[i].setButtonType(i);
 	}
-	m_Buttons[0].setAll(1194, 114, 48, 48);
-	m_Buttons[1].setAll(1194, 292, 48, 48);
-	m_Buttons[2].setAll(1093, 114, 48, 48);
-	m_Buttons[3].setAll(1093, 292, 48, 48);
+	m_Buttons[0].setAll(1219, 134, 39, 48);
+	m_Buttons[1].setAll(1219, 312, 39, 48);
+	m_Buttons[2].setAll(1118, 134, 39, 48);
+	m_Buttons[3].setAll(1118, 312, 39, 48);
 	m_Buttons[4].setAll(93, 471, 265, 282);
 	// fire blasters button
 	// Galaxy map button
@@ -180,7 +180,7 @@ void GameController::CheckInput()
 		//check which sector was click
 		if(UserInput->MouseClick(0))
 		{
-			for(int i = BUTTONS_AMOUNT-1;i < CLICKABLES_SIZE;i++)
+			for(int i = BUTTONS_AMOUNT;i < CLICKABLES_SIZE;i++)
 			{
 				if(mClickable[i]->Clicked(UserInput->GetMousePosition(),m_Command))
 				{
@@ -345,4 +345,9 @@ void GameController::Check_Win_Lose()
 	{
 		//m_Control_State = GAMEOVER;
 	}
+}
+
+CFriendlyUnit GameController::GetFriendlyUnit(void)
+{
+	return m_ActiveQuad.GetFriendlyUnit();
 }

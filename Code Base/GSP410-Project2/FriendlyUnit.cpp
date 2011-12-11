@@ -44,7 +44,7 @@ void CFriendlyUnit::IncrementShieldEnergy1(void)
 void CFriendlyUnit::IncrementShieldEnergy10(void)
 {
 	// Do not let the player kill themselves quickly? //
-	if(m_ShipEnergy >= 11)
+	if(m_ShipEnergy > 10)
 	{
 		m_ShieldEnergy+=10;
 		m_ShipEnergy-=10;
@@ -77,7 +77,7 @@ void CFriendlyUnit::IncrementBlasterEnergy1(void)
 void CFriendlyUnit::IncrementBlasterEnergy10(void)
 {
 	// Do not let the player kill themselves quickly? //
-	if(m_ShipEnergy >= 11)
+	if(m_ShipEnergy > 10)
 	{
 		m_BlasterEnergy+=10;
 		m_ShipEnergy-=10;

@@ -1,6 +1,6 @@
 #include "DirectX.h"
 
-void CDirectX::Render(CRenderable* stuffList[], int rNum)
+void CDirectX::Render(CRenderable* stuffList[], int rNum, CFriendlyUnit Friend)
 {
 	// Test if the Device was Created Successfully //
 	if(!m_pD3DDevice)
@@ -76,10 +76,35 @@ void CDirectX::Render(CRenderable* stuffList[], int rNum)
 				}
 
 				// Text //
-				if(m_pD3DFont->DrawTextW(0, L"Application Is Running", -1, &m_Source, DT_VCENTER | DT_CENTER | DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255)) == 0)
+				wsprintf(m_Text, L"Energy: %i", Friend.getShieldEnergy());
+				RECT Plaque;
+				Plaque.top = 24;
+				Plaque.left = 1062;
+				Plaque.right = 1328;
+				Plaque.bottom = 169;
+				if(m_pD3DFont->DrawTextW(0, m_Text, -1, &Plaque, DT_TOP | DT_CENTER | DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255)) == 0)
 				{
 					::MessageBoxA(m_hWnd, "Failed to Draw Text", "DrawTextW() Failed", MB_OK | MB_ICONERROR);
 				}
+				wsprintf(m_Text, L"Energy: %i", Friend.getBlasterEnergy());
+				Plaque.top = 202;
+				Plaque.left = 1062;
+				Plaque.right = 1328;
+				Plaque.bottom = 380;
+				if(m_pD3DFont->DrawTextW(0, m_Text, -1, &Plaque, DT_TOP | DT_CENTER | DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255)) == 0)
+				{
+					::MessageBoxA(m_hWnd, "Failed to Draw Text", "DrawTextW() Failed", MB_OK | MB_ICONERROR);
+				} //111 45, 393 77
+				wsprintf(m_Text, L"Total Energy: %i", Friend.getShipEnergy());
+				Plaque.top = 45;
+				Plaque.left = 111;
+				Plaque.right = 393;
+				Plaque.bottom = 77;
+				if(m_pD3DFont->DrawTextW(0, m_Text, -1, &Plaque, DT_VCENTER | DT_CENTER | DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255)) == 0)
+				{
+					::MessageBoxA(m_hWnd, "Failed to Draw Text", "DrawTextW() Failed", MB_OK | MB_ICONERROR);
+				}
+
 				/*
 				if(m_pD3DFont->DrawText(0, m_Text, -1, &m_Source, DT_TOP| DT_CENTER | DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255)) == 0)
 				{
