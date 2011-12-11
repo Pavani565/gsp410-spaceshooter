@@ -42,6 +42,7 @@ public:
 
 	//kevin's algorithm/code that i made into a function
 	void makeDrawableList();
+	CFriendlyUnit GetFriendlyUnit(void);
 
 	////////////////////////////////////////////////////////////////////////////
 	//Class    : LoadQuad

@@ -65,7 +65,7 @@ public:
 	void Update(float DeltaTime);
 
 	// Render //
-	void Render(CRenderable*[], int);
+	void Render(CRenderable*[], int, CFriendlyUnit Friend);
 
 	// Shutdown //
 	void Shutdown(void);

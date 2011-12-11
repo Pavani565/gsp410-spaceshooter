@@ -112,7 +112,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLi
 		//This is only to get the render fuction working. Remove this when the controller can pass in it's own Renderable list//
 		//CRenderable* stuff[5];
 
-		g_DX.Render(g_GC.GetRenderList(), g_GC.GetRenderListNumber());
+		g_DX.Render(g_GC.GetRenderList(), g_GC.GetRenderListNumber(), g_GC.GetFriendlyUnit());
 
 		prevTimeStamp = currTimeStamp;
 	}

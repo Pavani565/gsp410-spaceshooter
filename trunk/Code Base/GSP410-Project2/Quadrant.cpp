@@ -139,11 +139,11 @@ Sector& Quadrant::getEmptySector()
 
 void Quadrant::addBlasterEnergy1()
 {
-	mFriendly.IncrementShieldEnergy1();
+	mFriendly.IncrementBlasterEnergy1();
 }
 void Quadrant::addBlasterEnergy10()
 {
-	mFriendly.IncrementShieldEnergy10();
+	mFriendly.IncrementBlasterEnergy10();
 }
 void Quadrant::subBlasterEnergy1()
 {
@@ -210,4 +210,9 @@ int Quadrant::destroyedEnemies()
 int Quadrant::destroyedStations()
 {
 	return 0;
+}
+
+CFriendlyUnit Quadrant::GetFriendlyUnit(void)
+{
+	return mFriendly;
 }
