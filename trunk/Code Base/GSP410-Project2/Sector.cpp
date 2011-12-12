@@ -9,7 +9,7 @@ Sector::Sector()
 	mOccupied		= false;
 	mQuadPos.row	= 0;
 	mQuadPos.col	= 0;
-	mOccupiedType	= -1;
+	mOccupiedType	= EMPTY;
 	mEnemyIndex		= -1;
 	mScale			= 0.0f;
 	mSectorNum		= -1;
@@ -51,7 +51,14 @@ bool Sector::Clicked(POINT mouse, Command &cmd)
 		   mouse.y >= y - height/2)
 		{
 			//fill command with COMMAND_TYPE
-			cmd.commandType = mOccupiedType;
+			switch(mOccupiedType)
+			{
+			case EMPTY:		cmd.commandType = EMPTY_SECTOR;		break;
+			case ENEMY:		cmd.commandType = ENEMY_SECTOR;		break;
+			case STATION:	cmd.commandType = STATION_SECTOR;	break;
+			case STAR:		cmd.commandType = STAR_SECTOR;		break;
+			case ME:		cmd.commandType = EMPTY_SECTOR;		break;
+			}
 			//fill x & y positions
 			cmd.sectorPos = mQuadPos;
 			return true;

@@ -34,13 +34,13 @@ private:
 
 public:
 
-	//For passing to Render
+	//For passing to Render - Kevin
 	CRenderable*	m_Drawables[12];
 	int				m_NumberOfDrawables;
 
 	Quadrant();
 
-	//kevin's algorithm/code that i made into a function
+	//kevin's algorithm/code that i put into a function
 	void makeDrawableList();
 	CFriendlyUnit GetFriendlyUnit(void);
 
@@ -92,6 +92,8 @@ public:
 
 	//returns false if ship doesn't have enough fuel to move
 	bool moveFriendly(Command);
+
+	void dockFriendly(Command);
 
 	void moveEnemy();
 
