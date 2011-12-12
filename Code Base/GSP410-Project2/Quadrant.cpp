@@ -64,7 +64,7 @@ void Quadrant::LoadQuad(QuadData aQuad)
 	mFriendly.setY(mQuad[mFriendly.getSector().row][mFriendly.getSector().col].getSectorYCoord());
 	mQuad[mFriendly.getSector().row][mFriendly.getSector().col].setContent(ME);
 	mQuad[mFriendly.getSector().row][mFriendly.getSector().col].setOccupied(true);
-	
+
 	//place enemies in sectors and set those sectors to ENEMY and 
 	for(int i = 0; i < mQuadData.enemies; ++i)
 	{
@@ -114,7 +114,7 @@ Sector& Quadrant::getSector(int aIndex)
 
 Sector& Quadrant::getEmptySector()
 {
-	
+
 	int randRow, randCol;
 	randRow = randCol = -1;
 	bool finished = false;
@@ -175,11 +175,77 @@ bool Quadrant::fireBlasters()
 {
 	//check if blaster condition is ok
 	//if true
-		//get friendly's blaster energy level
-		//divide number by how many enemies are active
+	/*Energy weapon firing algorithm.
+	Divide the power set for the energy weapon by the number of enemy ships in the quadrant. This is the energy (e1) used against each enemy ship. 
+	Use the formula-- hit_energy =  e1 / (random(2 to 3) * (square_root(delta_row^2 + delta_column^2))  where delta_row and delta_column are the numbers of sector rows (or columns) between the enemy and friendly ship.
+	if hit_energy is less than or equal to .15 * remaining enemy power, no damage is done.
+	otherwise, enemy power = enemy power - hit_energy.
+	If enemy power is less than or equal to zero, then the enemy is destroyed.
+	*/
+
+
+
+	//if blasters damage is 0 and  energy is more then 0 check enemies
+
+	if(mFriendly.getBlasterCondition() == 0 && mFriendly.getBlasterEnergy() > 0)
+	{
+		//not sure if calling mQuadData is right
+		for(int i = 0; i < mQuadData.enemies;i++)
+		{	
+			////e1 / (random(2 to 3) * (square_root(delta_row^2 + delta_column^2))
+			
+
+			//get friendly's blaster energy level
+			//divide number by how many enemies are active
+			float e1 = mFriendly.getBlasterEnergy()/mQuadData.enemies;
+			
+			//getting random
+			int tempRand = (rand() %3) +2;
+			
+			//getting rows distance
+			float dRTemp = mEnemies[i].getRow() - mFriendly.getRow();
+			float delta_row = abs(dRTemp);
+			//getting col distance
+			float dCTemp = mEnemies[i].getCol() - mFriendly.getCol();
+			float delta_col = abs(dCTemp);
+			
+			//delta_row^2
+			delta_row = delta_row * delta_row;
+			//delta_column^2
+			delta_col = delta_col *  delta_col;
+			//(delta_row^2 + delta_column^2)
+			float deltas = delta_row + delta_col;
+			//square_root(delta_row^2 + delta_column^2)
+			float deltaSqrt =sqrt(deltas);
+			//hit_energy =  e1 / (random(2 to 3) * (square_root(delta_row^2 + delta_column^2))
+			float hit_energy = (e1/ tempRand) * deltaSqrt;
+
+			//If the resulting number (hit value) is less than 15% of the remaining enemy power,
+			//no damage is done, otherwise reduce the enemy power by the hit value.
+
+			float targetAmount =  mEnemies[i].getShipEnergy()/15;
+
+			if(hit_energy < targetAmount)
+			{
+				//report no damage
+			}
+			else
+			{
+				int shipDamage = (int)mEnemies[i].getShipEnergy() - hit_energy;
+				mEnemies[i].setShipEnergry(shipDamage);
+			}
+			
+			
+
+			
+			
+		}
+	}
+
+	
 
 	//if false
-		return false;
+	return false;
 }
 
 bool Quadrant::fireMissiles(Command cmd)
