@@ -259,6 +259,15 @@ bool Quadrant::moveFriendly(Command cmd)
 
 	return false;
 }
+void Quadrant::dockFriendly(Command cmd)
+{
+	//change cmd's sectorPos to one that is empty and next to station's sectorPos.
+	
+	if(moveFriendly(cmd))
+	{
+		//move friendly to sector next to station
+	}
+}
 
 void Quadrant::moveEnemy()
 {

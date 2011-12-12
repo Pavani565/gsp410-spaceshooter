@@ -249,12 +249,28 @@ void GameController::CheckInput()
 							m_TotalNumOfEnemies -= m_ActiveQuad.destroyedEnemies();
 							//m_TotalNumOfStations -= m_ActiveQuad.destroyedStations();
 						}
-
-
 						break;
 					case GALAXY_MAP:
 						//change game state 
 						m_Control_State = DISPLAYGMAP;
+						break;
+					case EMPTY_SECTOR:
+						m_ActiveQuad.moveFriendly(m_Command);
+						break;
+					case ENEMY_SECTOR:
+						if(m_ActiveQuad.fireMissiles(m_Command))
+						{
+							//check to see what was destroyed:
+								//enemy
+								//station
+								//star
+						}
+						break;
+					case STAR_SECTOR:
+						//do nothing
+						break;
+					case STATION_SECTOR:
+						m_ActiveQuad.dockFriendly(m_Command);
 						break;
 					default:
 						break;
